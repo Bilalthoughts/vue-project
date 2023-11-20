@@ -26,6 +26,7 @@
             class="inputclass"
           />
         </div>
+
         <br />
         <div class="flexclass">
           <div><label for="">Password</label></div>
@@ -60,32 +61,59 @@
 
 <script>
 import { toast } from "vue3-toastify";
-import {loginCredentials} from '../data/data.js'
+import { loginCredentials } from "../data/data.js";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
+import { reactive } from "vue";
 
 export default {
   name: "SignIn",
+
   data() {
     return {
-      email: "",
-      password: "",
-      isAuth:false,
+      isAuth: false,
     };
   },
+
+  setup() {
+    const state = reactive({
+      email: "",
+      password: "",
+    });
+    const rules = {
+      email: { required, email },
+      password: { required },
+    };
+
+    const v$ = useVuelidate(rules, state);
+    return { state, v$ };
+  },
+
   methods: {
     logindata() {
-      if (this.email && this.password) {
-        const user = loginCredentials.filter((credentials)=> this.email === credentials.email && this.password === credentials.password);
+      console.log(this.v$);
+      if (this.v$.$validate) {
+        const user = loginCredentials.filter(
+          (credentials) =>
+            this.email === credentials.email &&
+            this.password === credentials.password
+        )
 
-        if(user.length > 0){
+        if (user.length > 0) {
           this.isAuth = true;
-        this.$store.commit("loginData", {
-          payload: { email: this.email, password: this.password,isAuth: this.isAuth },
-        });
-        
-        this.$router.push("/");
+          this.$store.commit("loginData", {
+            payload: {
+              email: this.email,
+              password: this.password,
+              isAuth: this.isAuth,
+            },
+          });
+
+          this.$router.push("/");
         }
-       
-      } else {
+      } 
+      
+      else {
         toast("Email and Password Required!", {
           autoClose: 1000,
         });
