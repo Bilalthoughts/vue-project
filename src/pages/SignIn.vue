@@ -111,13 +111,14 @@ export default {
 
           this.$router.push("/");
         }
-      } 
-      
-      else {
-        toast("Email and Password Required!", {
+        else {
+        toast(required.$message, {
           autoClose: 1000,
         });
       }
+      } 
+      
+      
     },
   },
 };
@@ -135,13 +136,15 @@ export default {
 
 .CardBody {
   background-color: white;
-  width: 27vw;
-  height: 70vh;
+  width: 31%;
+  /* height: ; */
   margin: 50px auto 0px auto;
   border-radius: 10px;
+  padding-bottom: 10px;
 }
 .widthclass {
   width: 90%;
+  height: 100%;
   margin: auto;
 }
 
