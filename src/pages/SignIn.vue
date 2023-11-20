@@ -63,7 +63,7 @@
 import { toast } from "vue3-toastify";
 import { loginCredentials } from "../data/data.js";
 import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { required, email,maxLength } from "@vuelidate/validators";
 import { reactive } from "vue";
 
 export default {
@@ -82,7 +82,9 @@ export default {
     });
     const rules = {
       email: { required, email },
-      password: { required },
+      password: { required,         maxLengthValue: maxLength(10),
+
+ },
     };
 
     const v$ = useVuelidate(rules, state);
@@ -92,6 +94,12 @@ export default {
   methods: {
     logindata() {
       console.log(this.v$);
+
+
+      
+
+
+
       if (this.v$.$validate) {
         const user = loginCredentials.filter(
           (credentials) =>
@@ -111,15 +119,34 @@ export default {
 
           this.$router.push("/");
         }
-        if(!this.email) {
+        if(!this.email && !this.password){
+          toast('empty fields kon bharega ', {
+          autoClose: 1000,
+        });
+        }
+        else if(!this.email) {
         toast(`Email ${required.$message}`, {
           autoClose: 1000,
         });
       }
-        if(!this.password) {
+        else if(!this.password) {
         toast(`Password ${required.$message}`, {
           autoClose: 1000,
         });
+      }
+      else if (this.v$.$invalid) {
+        
+        toast('sahe se data likho', {
+          autoClose: 1000,
+        });
+        return;
+      }
+      else if (this.v$.password.maxLengthValue.$invalid) {
+        alert('glaht')
+        toast('kam se kam 10 words', {
+          autoClose: 1000,
+        });
+        return;
       }
       } 
       
