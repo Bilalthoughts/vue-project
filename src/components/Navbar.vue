@@ -212,6 +212,11 @@
                 My Account
               </button>
               <ul class="dropdown-menu">
+                <li >
+                  <span class="dropdown-item" 
+                    >{{ $store.state.email  }}</span
+                  >
+                </li>
                 <li @click.prevent="routeFunction">
                   <a class="dropdown-item" href="#"
                     >Login</a
