@@ -111,8 +111,13 @@ export default {
 
           this.$router.push("/");
         }
-        else {
-        toast(required.$message, {
+        if(!this.email) {
+        toast(`Email ${required.$message}`, {
+          autoClose: 1000,
+        });
+      }
+        if(!this.password) {
+        toast(`Password ${required.$message}`, {
           autoClose: 1000,
         });
       }
