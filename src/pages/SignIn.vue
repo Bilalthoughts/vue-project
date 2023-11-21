@@ -59,7 +59,7 @@
         </div>
         <div>
           <button
-            
+          @keyup.enter="logindata"
             @click="logindata"
             class="butonClass"
           >
@@ -76,7 +76,7 @@
 
 <script>
 import { toast } from "vue3-toastify";
-import { loginCredentials } from "../data/data.js";
+import { loginCredentials } from "../data/users.js";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 

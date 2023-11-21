@@ -1,9 +1,13 @@
 <template>
  
       <MenuBarComp  />
+      <div class="d-flex flex-wrap">
+      <CardList v-for="(items,index) in loginCredentials"  :key="index.id" :loginCredentials="items" :foodList="foodList" >
 
-      <CardList />
-   
+
+        
+        </CardList>
+      </div>
 </template>
 
 
@@ -11,7 +15,8 @@
 <script>
 import CardList from "../components/Card.vue";
 import MenuBarComp from "../components/MenuBar.vue";
-
+import {loginCredentials} from '../data/users.js'
+import {foodList} from '../data/foodlist'
 
 export default {
   name: "HomePage",
@@ -23,6 +28,8 @@ export default {
   data(){
     return{
       ifShowSidebar: false,
+      loginCredentials:loginCredentials,
+      foodList:foodList
     }
   },
   methods:{
