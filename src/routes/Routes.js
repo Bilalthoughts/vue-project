@@ -33,6 +33,9 @@ const isAuth = store.state.isAuth
   if (!isAuth && to.name !== 'signin') {
     return ('/signin')
   } 
+  else if (isAuth && to.name == 'signin') {
+    return ('/')
+  } 
 })
 
 export default routers;

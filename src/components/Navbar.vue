@@ -217,9 +217,9 @@
                     >{{ $store.state.email  }}</span
                   >
                 </li>
-                <li @click.prevent="routeFunction">
+                <li @click.prevent="logoutFunction">
                   <a class="dropdown-item" href="#"
-                    >Login</a
+                    >Logout</a
                   >
                 </li>
                 <li @click.prevent="$router.push('/FormPage')"><a class="dropdown-item" href="#">Form</a></li>
@@ -273,7 +273,8 @@ export default {
       console.log('abc')
       this.$router.push('/DashboardComp');
     },
-    routeFunction(){
+    logoutFunction(){
+      this.$store.commit('logout');
       this.$router.push('/signin')
     }
   }

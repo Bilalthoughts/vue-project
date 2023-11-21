@@ -19,12 +19,15 @@
             >Email or UserName</label
           >
           <input
-            v-model="email"
+            v-model.trim="v$.form.email.$model"
             type="email"
             name=""
-            id="emailUserName"
+            id="email"
             class="inputclass"
           />
+          <div class="text-danger" v-for="(error, index) of v$.form.email.$errors" :key="index">
+        <div class="error-msg"><small>{{ error.$message }}</small></div>
+      </div>
         </div>
 
         <br />
@@ -36,12 +39,14 @@
         </div>
         <input
           type="password"
-          v-model="password"
+          v-model.trim="v$.form.password.$model"
           name=""
-          id="emailUserName"
+          id="password"
           class="inputclass"
         />
-
+        <div class="text-danger" v-for="(error, index) of v$.form.password.$errors" :key="index">
+        <div class="error-msg"><small>{{ error.$message }}</small></div>
+      </div>
         <br />
         <br />
         <br />
@@ -49,7 +54,13 @@
           <input type="checkbox" />Remember me
         </div>
         <div>
-          <button @click="logindata" class="butonClass">Login</button>
+          <button
+            
+            @click="logindata"
+            class="butonClass"
+          >
+            Login
+          </button>
         </div>
         <div class="footertext">
           <p>@2023 HeavyCoders</p>
@@ -63,94 +74,78 @@
 import { toast } from "vue3-toastify";
 import { loginCredentials } from "../data/data.js";
 import { useVuelidate } from "@vuelidate/core";
-import { required, email,maxLength } from "@vuelidate/validators";
-import { reactive } from "vue";
+import { required, email, minLength } from "@vuelidate/validators";
 
 export default {
   name: "SignIn",
+  setup() {
+    return { v$: useVuelidate() };
+  },
 
   data() {
     return {
       isAuth: false,
+      form: {
+        email: "",
+        password: "",
+      },
     };
   },
-
-  setup() {
-    const state = reactive({
-      email: "",
-      password: "",
-    });
-    const rules = {
-      email: { required, email },
-      password: { required,         maxLengthValue: maxLength(10),
-
- },
+  validations() {
+    return {
+      form: {
+        email: {
+          required,
+          email,
+        },
+        password: {
+          required,
+          min: minLength(6),
+        },
+      },
     };
-
-    const v$ = useVuelidate(rules, state);
-    return { state, v$ };
   },
 
   methods: {
     logindata() {
-      console.log(this.v$);
-
-
       
-
-
-
-      if (this.v$.$validate) {
+      if (!this.form.email && !this.form.password){
+          toast('Plz fill the login details',{
+            autoClose:1000,
+          });
+        }
+      else if (this.v$.$validate) {
         const user = loginCredentials.filter(
           (credentials) =>
-            this.email === credentials.email &&
-            this.password === credentials.password
-        )
+            this.form.email === credentials.email &&
+            this.form.password === credentials.password
+        );
 
         if (user.length > 0) {
           this.isAuth = true;
           this.$store.commit("loginData", {
             payload: {
-              email: this.email,
-              password: this.password,
+              email: this.form.email,
+              password: this.form.password,
               isAuth: this.isAuth,
             },
           });
-
           this.$router.push("/");
+         
+
         }
-        if(!this.email && !this.password){
-          toast('empty fields kon bharega ', {
-          autoClose: 1000,
-        });
+
+        else{
+          toast('user does not exist',{
+            autoClose:1000,
+            
+          })
         }
-        else if(!this.email) {
-        toast(`Email ${required.$message}`, {
-          autoClose: 1000,
-        });
-      }
-        else if(!this.password) {
-        toast(`Password ${required.$message}`, {
-          autoClose: 1000,
-        });
-      }
-      else if (this.v$.$invalid) {
-        
-        toast('sahe se data likho', {
-          autoClose: 1000,
-        });
-        return;
-      }
-      else if (this.v$.password.maxLengthValue.$invalid) {
-        alert('glaht')
-        toast('kam se kam 10 words', {
-          autoClose: 1000,
-        });
-        return;
-      }
-      } 
       
-      
+       
+      }
+
+     
     },
   },
 };

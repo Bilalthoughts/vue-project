@@ -1,10 +1,10 @@
 export const loginCredentials = [
     {
-        email:'pasha@gmail.com',
-        password:'123'
+        email:'test@gmail.com',
+        password:'12345678'
     },
     {
-        email:'pasha1@gmail.com',
-        password:'1234'
+        email:'test2@gmail.com',
+        password:'1234567890'
     }
 ]
