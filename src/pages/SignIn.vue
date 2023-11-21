@@ -24,6 +24,7 @@
             name=""
             id="email"
             class="inputclass"
+            :class="[ 'inputclass ', this.form.buttonClick === true && this.form.email === '' && 'border-danger border-2' ]"
           />
           <div class="text-danger" v-for="(error, index) of v$.form.email.$errors" :key="index">
         <div class="error-msg"><small>{{ error.$message }}</small></div>
@@ -42,7 +43,10 @@
           v-model.trim="v$.form.password.$model"
           name=""
           id="password"
-          class="inputclass"
+          :class="[ 'inputclass ', this.form.buttonClick === true && this.form.password === '' && 'border-danger border-2' ]"
+
+         
+          
         />
         <div class="text-danger" v-for="(error, index) of v$.form.password.$errors" :key="index">
         <div class="error-msg"><small>{{ error.$message }}</small></div>
@@ -88,6 +92,7 @@ export default {
       form: {
         email: "",
         password: "",
+        buttonClick: false,
       },
     };
   },
@@ -108,7 +113,8 @@ export default {
 
   methods: {
     logindata() {
-      
+      this.form.buttonClick = true
+      console.log(this.form.buttonClick)
       if (!this.form.email && !this.form.password){
           toast('Plz fill the login details',{
             autoClose:1000,
