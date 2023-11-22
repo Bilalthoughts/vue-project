@@ -6,32 +6,13 @@
       /> -->
         <h2>
           <span @click="showSidebar" v-if="!ifShowSidebar"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="26"
-              height="26"
-              fill="currentColor"
-              class="bi bi-list"
-              viewBox="0 0 16 16"
             >
-              <path
-                fill-rule="evenodd"
-                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-              /></svg
-          ></span>
+          <img src="../assets/icons/menu.svg" alt="">
+          </span>
           <span @click="showSidebar" v-if="ifShowSidebar"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="26"
-              height="26"
-              fill="currentColor"
-              class="bi bi-x-lg"
-              viewBox="0 0 16 16"
             >
-              <path
-                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
-              /></svg
-          ></span>
+          <img src="../assets/icons/cross.svg" alt="">
+          </span>
           <span @click.prevent="$router.push('/')">Vue Company</span>
         </h2>
       </a>
@@ -67,74 +48,23 @@
             class="nav-item d-flex align-items-center"
           >
             <a class="nav-link active gap-1" aria-current="page" href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-house-door-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"
-                />
-              </svg>
-              Dashboard</a
+              <img src="../assets/icons/home.svg" alt="home">
+              Home</a
             >
           </li>
           <li class="nav-item d-flex align-items-center">
             <a class="nav-link gap-1" href="#"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-signpost-fill"
-                viewBox="0 0 16 16"
               >
-                <path
-                  d="M7.293.707A1 1 0 0 0 7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414A1 1 0 0 0 7.293.707z"
-                />
-              </svg>
-              POS</a
-            >
-          </li>
-          <li class="nav-item d-flex align-items-center gap-1">
-            <a class="nav-link" href="#"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-laptop"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"
-                />
-              </svg>
-              Kitchen</a
+              <img src="../assets/icons/analytic.svg" alt="">
+              Analytics</a
             >
           </li>
           <li
-            class="nav-item p-0 d-flex align-items-center justify-content-center"
+          class="nav-item p-0 d-flex align-items-center justify-content-center"
           >
-            <a class="nav-link gap-1" href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-r-square-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M6.835 5.092v2.777h1.549c.995 0 1.573-.463 1.573-1.36 0-.913-.596-1.417-1.537-1.417H6.835Z"
-                />
-                <path
-                  d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2Zm3.5 4.002h3.11c1.71 0 2.741.973 2.741 2.46 0 1.138-.667 1.94-1.495 2.24L11.5 12H9.98L8.52 8.924H6.836V12H5.5V4.002Z"
-                />
-              </svg>
+          <a class="nav-link gap-1" href="#">
+         
+              <img src="../assets/icons/transaction.svg" alt="">
 
               <div class="dropdown">
                 <a
@@ -143,54 +73,90 @@
                   role="button"
                   aria-expanded="false"
                 >
-                  Register
+                 Transactions
                 </a>
 
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
+                <ul class="dropdown-menu ">
+                  <li
+                    class="dropdown dropend  dropdownNested px-3"
+                    style="position: relative"
+                  >
+                    <a
+                      class="dropdown-toggle gap-1 py-1"
+                      style="text-decoration:  none"
+                      role="button"
+                      aria-expanded="false"
+                    >
+                      Purchase Order
+                    </a>
+                    <div
+                      class="dropdown-menu d-none"
+                      style="position: absolute; left: 100%; top: 0px"
+                    >
+                      <a class="dropdown-item" href="#">Inbox</a>
+                      <a class="dropdown-item" href="#">In-progress</a>
+                      <a class="dropdown-item" href="#">History</a>
+                    </div>
+                  </li>
                   <li
                     class="dropdown dropend dropdownNested px-3"
                     style="position: relative"
                   >
                     <a
-                      class="dropdown-toggle"
+                      class="dropdown-toggle py-1"
                       style="text-decoration: none"
                       role="button"
                       aria-expanded="false"
                     >
-                      Nested Dropdown
+                      Shipment
                     </a>
                     <div
                       class="dropdown-menu d-none"
-                      style="position: absolute; left: 100%; top: 10px"
+                      style="position: absolute; left: 100%; top: 0px"
                     >
-                      <a class="dropdown-item" href="#">Nested Item 1</a>
-                      <a class="dropdown-item" href="#">Nested Item 2</a>
+                      <a class="dropdown-item" href="#">Sent</a>
+                      <a class="dropdown-item" href="#">Saved</a>
+                      <a class="dropdown-item" href="#">History</a>
                     </div>
                   </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                  <li
+                    class="dropdown dropend dropdownNested px-3"
+                    style="position: relative"
+                  >
+                    <a
+                      class="dropdown-toggle py-1 "
+                      style="text-decoration: none"
+                      role="button"
+                      aria-expanded="false"
+                    >
+                      Invoice
+                    </a>
+                    <div
+                      class="dropdown-menu d-none"
+                      style="position: absolute; left: 100%; top: 0px"
+                    >
+                      <a class="dropdown-item" href="#">Sent</a>
+                      <a class="dropdown-item" href="#">Saved</a>
+                      <a class="dropdown-item" href="#">History</a>
+                    </div>
                   </li>
+                 
                 </ul>
               </div>
             </a>
           </li>
+          <li class="nav-item d-flex align-items-center ">
+                <a class="nav-link gap-1" href="#"
+                  >
+                  <img src="../assets/icons/document.svg" alt="">
+                  Most Recent Documents </a
+                >
+              </li>
           <li class="nav-item d-flex align-items-center">
             <a class="nav-link gap-1" href="#"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-list-ul"
-                viewBox="0 0 16 16"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-                />
-              </svg>
-              Order History</a
+              <img src="../assets/icons/search.svg" alt="">
+              Document Tracking</a
             >
           </li>
           <!-- <li class="nav-item dropdown">
