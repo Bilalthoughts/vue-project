@@ -25,10 +25,10 @@
             name=""
             id="email"
             class="inputclass"
-            :class="[ 'inputclass ', this.form.buttonClick === true && (this.form.email === '' || this.form.bordercolor) && 'border-danger border-2' ]"
+            :class="{ 'border-danger': !v$.form.email.$pending && v$.form.email.$error }"
           />
           <div class="text-danger" v-for="(error, index) of v$.form.email.$errors" :key="index">
-        <div  v-if="this.form.buttonClick " class="error-msg"><small>{{this.form.bordercolor = true  &&(error.$message)  }}</small></div>
+        <div  v-if="this.buttonClick " class="error-msg"><small>{{error.$message}}</small></div>
       </div>
         </div>
 
@@ -45,13 +45,13 @@
           v-model.trim="v$.form.password.$model"
           name=""
           id="password"
-          :class="[ 'inputclass ', this.form.buttonClick === true && (this.form.password === '' || this.form.bordercolor) && 'border-danger border-2' ]"
-
-         
+          class="inputclass"
+          @blur="v$.form.password.$touch"
+          :class="{ 'border-danger': !v$.form.password.$pending && v$.form.password.$error }"
           
         />
         <div  class="text-danger" v-for="(error, index) of v$.form.password.$errors" :key="index">
-        <div v-if="this.form.buttonClick " class="error-msg"><small >{{(this.form.bordercolor = true )  &&(error.$message)  }}{{ this.form.bordercolor = true }}</small></div>
+        <div v-if="this.buttonClick " class="error-msg"><small >{{error.$message  }}</small></div>
       </div>
         <br />
         <br />
@@ -91,11 +91,12 @@ export default {
   data() {
     return {
       isAuth: false,
+      buttonClick: false,
       form: {
         email: "",
         password: "",
-        buttonClick: false,
-        bordercolor: false
+        buttonClick: false
+      
       },
     };
   },
@@ -116,8 +117,9 @@ export default {
 
   methods: {
     logindata() {
-      this.form.buttonClick = true
-      console.log(this.form.buttonClick)
+      this.v$.$touch()
+      this.buttonClick = true
+      console.log(this.buttonClick)
       if (!this.form.email && !this.form.password){
           toast('Plz fill the login details',{
             autoClose:1000,
