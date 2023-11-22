@@ -20,14 +20,15 @@
           >
           <input
             v-model.trim="v$.form.email.$model"
+            @keyup.enter="logindata"
             type="email"
             name=""
             id="email"
             class="inputclass"
-            :class="[ 'inputclass ', this.form.buttonClick === true && this.form.email === '' && 'border-danger border-2' ]"
+            :class="[ 'inputclass ', this.form.buttonClick === true && (this.form.email === '' || this.form.bordercolor) && 'border-danger border-2' ]"
           />
           <div class="text-danger" v-for="(error, index) of v$.form.email.$errors" :key="index">
-        <div class="error-msg"><small>{{ error.$message }}</small></div>
+        <div  v-if="this.form.buttonClick " class="error-msg"><small>{{this.form.bordercolor = true  &&(error.$message)  }}</small></div>
       </div>
         </div>
 
@@ -40,16 +41,17 @@
         </div>
         <input
           type="password"
+          @keyup.enter="logindata"
           v-model.trim="v$.form.password.$model"
           name=""
           id="password"
-          :class="[ 'inputclass ', this.form.buttonClick === true && this.form.password === '' && 'border-danger border-2' ]"
+          :class="[ 'inputclass ', this.form.buttonClick === true && (this.form.password === '' || this.form.bordercolor) && 'border-danger border-2' ]"
 
          
           
         />
-        <div class="text-danger" v-for="(error, index) of v$.form.password.$errors" :key="index">
-        <div class="error-msg"><small>{{ error.$message }}</small></div>
+        <div  class="text-danger" v-for="(error, index) of v$.form.password.$errors" :key="index">
+        <div v-if="this.form.buttonClick " class="error-msg"><small >{{(this.form.bordercolor = true )  &&(error.$message)  }}{{ this.form.bordercolor = true }}</small></div>
       </div>
         <br />
         <br />
@@ -93,6 +95,7 @@ export default {
         email: "",
         password: "",
         buttonClick: false,
+        bordercolor: false
       },
     };
   },
