@@ -123,6 +123,7 @@ export default {
       if (!this.form.email && !this.form.password){
           toast('Plz fill the login details',{
             autoClose:1000,
+            type:'error'
           });
         }
       else if (this.v$.$validate) {
@@ -149,7 +150,7 @@ export default {
         else{
           toast('user does not exist',{
             autoClose:1000,
-            
+            type:'error'
           })
         }
       
