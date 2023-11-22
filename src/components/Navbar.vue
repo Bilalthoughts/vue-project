@@ -1,16 +1,40 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary pb-0 mb-0 border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand" style="height: 80px;" href="#"
-        >
+      <a class="navbar-brand" style="height: 80px" href="#">
         <!-- <img style="width: 80px" src="../assets/image/logo.png" alt=""
       /> -->
-      <h2><span @click="showSidebar" v-if="!ifShowSidebar" ><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg></span> <span @click="showSidebar" v-if="ifShowSidebar"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-</svg></span> <span @click.prevent="$router.push('/')">Vue Company</span></h2>
-    </a>
+        <h2>
+          <span @click="showSidebar" v-if="!ifShowSidebar"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              fill="currentColor"
+              class="bi bi-list"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+              /></svg
+          ></span>
+          <span @click="showSidebar" v-if="ifShowSidebar"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              fill="currentColor"
+              class="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+              /></svg
+          ></span>
+          <span @click.prevent="$router.push('/')">Vue Company</span>
+        </h2>
+      </a>
 
       <button
         class="navbar-toggler"
@@ -38,8 +62,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
-          <li @click.prevent="testing()" class="nav-item">
-            <a  class="nav-link active gap-1" aria-current="page" href="#">
+          <li
+            @click.prevent="testing()"
+            class="nav-item d-flex align-items-center"
+          >
+            <a class="nav-link active gap-1" aria-current="page" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -52,10 +79,10 @@
                   d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"
                 />
               </svg>
-             Dashboard</a
+              Dashboard</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item d-flex align-items-center">
             <a class="nav-link gap-1" href="#"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -72,8 +99,8 @@
               POS</a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link gap-1" href="#"
+          <li class="nav-item d-flex align-items-center gap-1">
+            <a class="nav-link" href="#"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -89,7 +116,9 @@
               Kitchen</a
             >
           </li>
-          <li class="nav-item">
+          <li
+            class="nav-item p-0 d-flex align-items-center justify-content-center"
+          >
             <a class="nav-link gap-1" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -106,10 +135,47 @@
                   d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2Zm3.5 4.002h3.11c1.71 0 2.741.973 2.741 2.46 0 1.138-.667 1.94-1.495 2.24L11.5 12H9.98L8.52 8.924H6.836V12H5.5V4.002Z"
                 />
               </svg>
-              Register</a
-            >
+
+              <div class="dropdown">
+                <a
+                  class="dropdown-toggle remove-dropdown-arrow"
+                  style="text-decoration: none"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  Register
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li
+                    class="dropdown dropend dropdownNested px-3"
+                    style="position: relative"
+                  >
+                    <a
+                      class="dropdown-toggle"
+                      style="text-decoration: none"
+                      role="button"
+                      aria-expanded="false"
+                    >
+                      Nested Dropdown
+                    </a>
+                    <div
+                      class="dropdown-menu d-none"
+                      style="position: absolute; left: 100%; top: 10px"
+                    >
+                      <a class="dropdown-item" href="#">Nested Item 1</a>
+                      <a class="dropdown-item" href="#">Nested Item 2</a>
+                    </div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+              </div>
+            </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item d-flex align-items-center">
             <a class="nav-link gap-1" href="#"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -212,17 +278,15 @@
                 My Account
               </button>
               <ul class="dropdown-menu">
-                <li >
-                  <span class="dropdown-item" 
-                    >{{ $store.state.email  }}</span
-                  >
+                <li>
+                  <span class="dropdown-item">{{ $store.state.email }}</span>
                 </li>
                 <li @click.prevent="logoutFunction">
-                  <a class="dropdown-item" href="#"
-                    >Logout</a
-                  >
+                  <a class="dropdown-item" href="#">Logout</a>
                 </li>
-                <li @click.prevent="$router.push('/FormPage')"><a class="dropdown-item" href="#">Form</a></li>
+                <li @click.prevent="$router.push('/FormPage')">
+                  <a class="dropdown-item" href="#">Form</a>
+                </li>
                 <li>
                   <a class="dropdown-item" href="#">Something else here</a>
                 </li>
@@ -248,7 +312,15 @@
   padding: 5px 13px 5px 13px;
   border-radius: 50%;
 }
-
+.remove-dropdown-arrow::after {
+  display: none !important;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdownNested:hover .dropdown-menu {
+  display: block !important;
+}
 .customBgbuton {
   background-color: #eaeaea;
   padding: 5px 10px 5px 10px;
@@ -261,22 +333,22 @@
 <script>
 export default {
   name: "navbarComp",
-  props:{
-    ifShowSidebar:Boolean
+  props: {
+    ifShowSidebar: Boolean,
   },
- 
-  methods:{
-    showSidebar(){
-      this.$emit('showSidebar')
+
+  methods: {
+    showSidebar() {
+      this.$emit("showSidebar");
     },
-    testing(){
-      console.log('abc')
-      this.$router.push('/DashboardComp');
+    testing() {
+      console.log("abc");
+      this.$router.push("/DashboardComp");
     },
-    logoutFunction(){
-      this.$store.commit('logout');
-      this.$router.push('/signin')
-    }
-  }
+    logoutFunction() {
+      this.$store.commit("logout");
+      this.$router.push("/signin");
+    },
+  },
 };
 </script>

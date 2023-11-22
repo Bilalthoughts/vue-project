@@ -25,7 +25,7 @@
             name=""
             id="email"
             class="inputclass"
-            :class="{ 'border-danger': !v$.form.email.$pending && v$.form.email.$error && buttonClick }"
+            :class="{ 'border-danger':  v$.form.email.$error && buttonClick }"
           />
           <div class="text-danger" v-for="(error, index) of v$.form.email.$errors" :key="index">
         <div  v-if="this.buttonClick " class="error-msg"><small>{{error.$message}}</small></div>
@@ -46,12 +46,11 @@
           name=""
           id="password"
           class="inputclass"
-          @blur="v$.form.password.$touch"
-          :class="{ 'border-danger': !v$.form.password.$pending && v$.form.password.$error && buttonClick }"
+          :class="{ 'border-danger':  v$.form.password.$error && buttonClick }"
           
         />
-        <div  class="text-danger" v-for="(error, index) of v$.form.password.$errors" :key="index">
-        <div v-if="this.buttonClick " class="error-msg"><small >{{error.$message  }}</small></div>
+        <div  class="text-danger " v-for="(error, index) of v$.form.password.$errors" :key="index">
+        <div v-if="this.buttonClick "  class="error-msg "><small >{{  error.$message  }}</small></div>
       </div>
         <br />
         <br />
