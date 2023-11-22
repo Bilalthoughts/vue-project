@@ -1,16 +1,11 @@
 <template>
- 
-      <MenuBarComp  />
-      <div class="d-flex flex-wrap">
-      <CardList v-for="(items,index) in loginCredentials"  :key="index.id" :loginCredentials="items" :foodList="foodList" >
-
-
-        
-        </CardList>
-      </div>
+  <MenuBarComp />
+  <div class="d-flex flex-wrap">
+    <template v-for="(items, index) in loginCredentials" :key="index.id">
+      <CardList :loginCredentials="items" :foodList="foodList"></CardList>
+    </template>
+  </div>
 </template>
-
-
 
 <script>
 import CardList from "../components/Card.vue";

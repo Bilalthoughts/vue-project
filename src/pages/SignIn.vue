@@ -25,11 +25,17 @@
             name=""
             id="email"
             class="inputclass"
-            :class="{ 'border-danger':  v$.form.email.$error && buttonClick }"
+            :class="{ 'border-danger': v$.form.email.$error && buttonClick }"
           />
-          <div class="text-danger" v-for="(error, index) of v$.form.email.$errors" :key="index">
-        <div  v-if="this.buttonClick " class="error-msg"><small>{{error.$message}}</small></div>
-      </div>
+          <div
+            class="text-danger"
+            v-for="(error, index) of v$.form.email.$errors"
+            :key="index"
+          >
+            <div v-if="this.buttonClick" class="error-msg">
+              <small>{{ error.$message }}</small>
+            </div>
+          </div>
         </div>
 
         <br />
@@ -46,12 +52,17 @@
           name=""
           id="password"
           class="inputclass"
-          :class="{ 'border-danger':  v$.form.password.$error && buttonClick }"
-          
+          :class="{ 'border-danger': v$.form.password.$error && buttonClick }"
         />
-        <div  class="text-danger " v-for="(error, index) of v$.form.password.$errors" :key="index">
-        <div v-if="this.buttonClick "  class="error-msg "><small >{{  error.$message  }}</small></div>
-      </div>
+        <div
+          class="text-danger"
+          v-for="(error, index) of v$.form.password.$errors"
+          :key="index"
+        >
+          <div v-if="this.buttonClick" class="error-msg">
+            <small>{{ error.$message }}</small>
+          </div>
+        </div>
         <br />
         <br />
         <br />
@@ -60,7 +71,7 @@
         </div>
         <div>
           <button
-          @keyup.enter="logindata"
+            @keyup.enter="logindata"
             @click="logindata"
             class="butonClass"
           >
@@ -94,8 +105,7 @@ export default {
       form: {
         email: "",
         password: "",
-        buttonClick: false
-      
+        buttonClick: false,
       },
     };
   },
@@ -116,16 +126,15 @@ export default {
 
   methods: {
     logindata() {
-      this.v$.$touch()
-      this.buttonClick = true
-      console.log(this.buttonClick)
-      if (!this.form.email && !this.form.password){
-          toast('Plz fill the login details',{
-            autoClose:1000,
-            type:'error'
-          });
-        }
-      else if (this.v$.$validate) {
+      this.v$.$touch();
+      this.buttonClick = true;
+      console.log(this.buttonClick);
+      if (!this.form.email && !this.form.password) {
+        toast("Plz fill the login details", {
+          autoClose: 1000,
+          type: "error",
+        });
+      } else if (this.v$.$validate) {
         const user = loginCredentials.filter(
           (credentials) =>
             this.form.email === credentials.email &&
@@ -142,21 +151,13 @@ export default {
             },
           });
           this.$router.push("/");
-         
-
+        } else {
+          toast("user does not exist", {
+            autoClose: 1000,
+            type: "error",
+          });
         }
-
-        else{
-          toast('user does not exist',{
-            autoClose:1000,
-            type:'error'
-          })
-        }
-      
-       
       }
-
-     
     },
   },
 };

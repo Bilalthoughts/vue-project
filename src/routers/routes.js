@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import {store} from '../store/store'
+import { store } from "../store/store";
 // import HomePage from "../pages/Home.vue";
 // import SignIn from "../pages/SignIn.vue";
 // import DashboardComp from "../pages/Dashboard.vue";
@@ -11,9 +11,12 @@ const routes = [
 
     component: () => import("../pages/Home.vue"),
     meta: { layout: LayoutWrapper },
-    
   },
-  {name:'signin', path: "/signin", component: () => import("../pages/SignIn.vue") },
+  {
+    name: "signin",
+    path: "/signin",
+    component: () => import("../pages/SignIn.vue"),
+  },
   {
     path: "/DashboardComp",
     component: () => import("../pages/Dashboard.vue"),
@@ -28,14 +31,13 @@ const routers = createRouter({
 });
 
 routers.beforeEach((to) => {
-const isAuth = store.state.isAuth
+  const isAuth = store.state.isAuth;
 
-  if (!isAuth && to.name !== 'signin') {
-    return ('/signin')
-  } 
-  else if (isAuth && to.name == 'signin') {
-    return ('/')
-  } 
-})
+  if (!isAuth && to.name !== "signin") {
+    return "/signin";
+  } else if (isAuth && to.name == "signin") {
+    return "/";
+  }
+});
 
 export default routers;

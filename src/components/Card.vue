@@ -1,7 +1,6 @@
-<template  >
- 
-    <div v-for="(foodLists ,index) in foodList" :key="index"    class=" w-25  m-4">
-    <ul class="list-group" >
+<template>
+  <div v-for="(foodLists, index) in foodList" :key="index" class="w-25 m-4">
+    <ul class="list-group">
       <li
         class="list-group-item active d-flex gap-2 flex-wrap"
         aria-current="true"
@@ -18,7 +17,7 @@
             <path
               d="M8.39 12.648a1.32 1.32 0 0 0-.015.18c0 .305.21.508.5.508.266 0 .492-.172.555-.477l.554-2.703h1.204c.421 0 .617-.234.617-.547 0-.312-.188-.53-.617-.53h-.985l.516-2.524h1.265c.43 0 .618-.227.618-.547 0-.313-.188-.524-.618-.524h-1.046l.476-2.304a1.06 1.06 0 0 0 .016-.164.51.51 0 0 0-.516-.516.54.54 0 0 0-.539.43l-.523 2.554H7.617l.477-2.304c.008-.04.015-.118.015-.164a.512.512 0 0 0-.523-.516.539.539 0 0 0-.531.43L6.53 5.484H5.414c-.43 0-.617.22-.617.532 0 .312.187.539.617.539h.906l-.515 2.523H4.609c-.421 0-.609.219-.609.531 0 .313.188.547.61.547h.976l-.516 2.492c-.008.04-.015.125-.015.18 0 .305.21.508.5.508.265 0 .492-.172.554-.477l.555-2.703h2.242l-.515 2.492zm-1-6.109h2.266l-.515 2.563H6.859l.532-2.563z"
             /></svg
-          >{{loginCredentials.id}}
+          >{{ loginCredentials.id }}
         </div>
 
         <div class="px-1 d-flex align-items-center gap-1">
@@ -53,7 +52,7 @@
               d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
             />
           </svg>
-           {{ loginCredentials.name }}
+          {{ loginCredentials.name }}
         </div>
 
         <div class="px-1 d-flex align-items-center gap-1">
@@ -91,35 +90,34 @@
       <div class="customLi">
         <li class="list-group-item"><b>Food Item</b><b> Quantity</b></li>
         <li class="list-group-item">
-          <div>{{foodLists.item1.foodName}}</div>
-          <div>{{foodLists.item1.quantity}}</div>
+          <div>{{ foodLists.item1.foodName }}</div>
+          <div>{{ foodLists.item1.quantity }}</div>
         </li>
         <li class="list-group-item">
-          <div> {{foodLists.item2.foodName}}</div>
-          <div>{{foodLists.item2.quantity}}</div>
+          <div>{{ foodLists.item2.foodName }}</div>
+          <div>{{ foodLists.item2.quantity }}</div>
         </li>
         <li class="list-group-item">
-          <div>{{foodLists.item3.foodName}}</div>
-          <div>{{foodLists.item1.quantity}}</div>
+          <div>{{ foodLists.item3.foodName }}</div>
+          <div>{{ foodLists.item1.quantity }}</div>
         </li>
         <li class="list-group-item">
-          <div>{{foodLists.item4.foodName}}</div>
-          <div>{{foodLists.item4.quantity}}</div>
+          <div>{{ foodLists.item4.foodName }}</div>
+          <div>{{ foodLists.item4.quantity }}</div>
         </li>
         <li class="list-group-item">
-          <div>{{foodLists.item5.foodName}}</div>
-          <div>{{foodLists.item5.quantity}}</div>
+          <div>{{ foodLists.item5.foodName }}</div>
+          <div>{{ foodLists.item5.quantity }}</div>
         </li>
         <li class="list-group-item align-items-baseline">
           <div>Note</div>
-          <div><button class="btn btn-primary" type="submit">Mark Ready</button>
-</div>
+          <div>
+            <button class="btn btn-primary" type="submit">Mark Ready</button>
+          </div>
         </li>
       </div>
     </ul>
   </div>
-   
-
 </template>
 
 <style>
@@ -132,9 +130,6 @@
 <script>
 export default {
   name: "CardList",
-  props:
-    ['loginCredentials','foodList']
-  
- 
+  props: ["loginCredentials", "foodList"],
 };
 </script>
