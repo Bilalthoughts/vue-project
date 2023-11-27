@@ -51,7 +51,7 @@
             >
           </li>
           <li
-            @click.prevent="$router.push('/analytic')"
+            @click.prevent="$router.push($page.ANALYTICS.path)"
             class="nav-item d-flex align-items-center"
           >
             <a class="nav-link gap-1" href="#">
@@ -93,19 +93,19 @@
                       style="position: absolute; left: 100%; top: 0px"
                     >
                       <a
-                        @click.prevent="$router.push('/PO-Inbox')"
+                        @click.prevent="$router.push($page.PO_INBOX.path)"
                         class="dropdown-item"
                         href="#"
                         >Inbox</a
                       >
                       <a
-                        @click.prevent="$router.push('/PO-InProgress')"
+                        @click.prevent="$router.push($page.PO_PROGRESS.path)"
                         class="dropdown-item"
                         href="#"
                         >In-progress</a
                       >
                       <a
-                        @click.prevent="$router.push('/PO-History')"
+                        @click.prevent="$router.push($page.PO_HISTORY.path)"
                         class="dropdown-item"
                         href="#"
                         >History</a
@@ -129,19 +129,21 @@
                       style="position: absolute; left: 100%; top: 0px"
                     >
                       <a
-                        @click.prevent="$router.push('/ShipmentSent')"
+                        @click.prevent="$router.push($page.SHIPMENT_SENT.path)"
                         class="dropdown-item"
                         href="#"
                         >Sent</a
                       >
                       <a
-                        @click.prevent="$router.push('/ShipmentSaved')"
+                        @click.prevent="$router.push($page.SHIPMENT_SAVED.path)"
                         class="dropdown-item"
                         href="#"
                         >Saved</a
                       >
                       <a
-                        @click.prevent="$router.push('/ShipmentHistory')"
+                        @click.prevent="
+                          $router.push($page.SHIPMENT_HISTORY.path)
+                        "
                         class="dropdown-item"
                         href="#"
                         >History</a
@@ -165,19 +167,21 @@
                       style="position: absolute; left: 100%; top: 0px"
                     >
                       <a
-                        @click.prevent="$router.push('/InvoiceSent')"
+                        @click.prevent="$router.push($page.INVOICE_SENT.path)"
                         class="dropdown-item"
                         href="#"
                         >Sent</a
                       >
                       <a
-                        @click.prevent="$router.push('/InvoiceSaved')"
+                        @click.prevent="$router.push($page.INVOICE_SAVED.path)"
                         class="dropdown-item"
                         href="#"
                         >Saved</a
                       >
                       <a
-                        @click.prevent="$router.push('/InvoiceHistory')"
+                        @click.prevent="
+                          $router.push($page.INVOICE_HISTORY.path)
+                        "
                         class="dropdown-item"
                         href="#"
                         >History</a
@@ -189,7 +193,7 @@
             </a>
           </li>
           <li
-            @click.prevent="$router.push('/MostRecentDocs')"
+            @click.prevent="$router.push($page.MOST_RECENT_DOCS.path)"
             class="nav-item d-flex align-items-center"
           >
             <a class="nav-link gap-1" href="#">
@@ -198,7 +202,7 @@
             </a>
           </li>
           <li
-            @click.prevent="$router.push('/DocTracking')"
+            @click.prevent="$router.push($page.DOC_TRACKING.path)"
             class="nav-item d-flex align-items-center"
           >
             <a class="nav-link gap-1" href="#">
@@ -297,7 +301,7 @@
                 <li @click.prevent="logoutFunction">
                   <a class="dropdown-item" href="#">Logout</a>
                 </li>
-                <li @click.prevent="$router.push('/FormPage')">
+                <li @click.prevent="$router.push($page.FORM_PAGE.path)">
                   <a class="dropdown-item" href="#">Form</a>
                 </li>
                 <li>
@@ -360,7 +364,7 @@ export default {
     },
     logoutFunction() {
       this.$store.commit("logout");
-      this.$router.push("/signin");
+      this.$router.push(this.$page.SIGNIN.path);
     },
   },
 };

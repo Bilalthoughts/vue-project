@@ -6,7 +6,7 @@ import { store } from "../store/store";
 // import FormPage from "../pages/Form.vue";
 import LayoutWrapper from "../layouts/Layout.vue";
 import { transRoutes } from "./transRouter";
-import { pageRoute } from "../constants/pages";
+import { page } from "../constants/pages";
 const routes = [
   {
     path: "/",
@@ -15,31 +15,31 @@ const routes = [
   },
   ...transRoutes,
   {
-    ...pageRoute.SIGNIN,
+    ...page.SIGNIN,
     component: () => import("../pages/SignIn.vue"),
   },
   {
-    ...pageRoute.ANALYTICS,
+    ...page.ANALYTICS,
     component: () => import("../pages/Analytics.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
-    ...pageRoute.DOC_TRACKING,
+    ...page.DOC_TRACKING,
     component: () => import("../pages/DocTracking.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
-    ...pageRoute.MOST_RECENT_DOCS,
+    ...page.MOST_RECENT_DOCS,
     component: () => import("../pages/MostRecentDoc.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
-    ...pageRoute.DASHBOARD_PAGE,
+    ...page.DASHBOARD_PAGE,
     component: () => import("../pages/Dashboard.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
-    ...pageRoute.FORM_PAGE,
+    ...page.FORM_PAGE,
     component: () => import("../pages/Form.vue"),
   },
 ];

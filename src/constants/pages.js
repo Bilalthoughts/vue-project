@@ -1,4 +1,4 @@
-export const pageRoute = {
+export const page = {
   SIGNIN: { name: "SIGNIN", path: "/signin" },
   ANALYTICS: { name: "ANALYTICS", path: "/analytic" },
   DOC_TRACKING: { name: "DOC_TRACKING", path: "/DocTracking" },

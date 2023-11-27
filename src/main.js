@@ -5,6 +5,7 @@ import App from "./App.vue";
 import { store } from "./store/store.js";
 import Toast from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import { page } from "./constants/pages";
 
 const app = createApp(App);
 app.use(routers);
@@ -15,6 +16,8 @@ app.use(Toast, {
   duration: 3000,
   dismissible: true,
 });
+
+app.config.globalProperties.$page = page;
 
 app.mount("#app");
 
