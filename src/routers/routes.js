@@ -6,44 +6,42 @@ import { store } from "../store/store";
 // import FormPage from "../pages/Form.vue";
 import LayoutWrapper from "../layouts/Layout.vue";
 import { transRoutes } from "./transRouter";
-
+import { pageRoute } from "../constants/pages";
 const routes = [
   {
     path: "/",
-
     component: () => import("../pages/Home.vue"),
     meta: { layout: LayoutWrapper },
   },
   ...transRoutes,
   {
-    name: "signin",
-    path: "/signin",
+    ...pageRoute.SIGNIN,
     component: () => import("../pages/SignIn.vue"),
   },
   {
-    name: "analytic",
-    path: "/analytic",
+    ...pageRoute.ANALYTICS,
     component: () => import("../pages/Analytics.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
-    name: "DocTracking",
-    path: "/DocTracking",
+    ...pageRoute.DOC_TRACKING,
     component: () => import("../pages/DocTracking.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
-    name: "MostRecentDocs",
-    path: "/MostRecentDocs",
+    ...pageRoute.MOST_RECENT_DOCS,
     component: () => import("../pages/MostRecentDoc.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
-    path: "/DashboardComp",
+    ...pageRoute.DASHBOARD_PAGE,
     component: () => import("../pages/Dashboard.vue"),
     meta: { layout: LayoutWrapper },
   },
-  { path: "/FormPage", component: () => import("../pages/Form.vue") },
+  {
+    ...pageRoute.FORM_PAGE,
+    component: () => import("../pages/Form.vue"),
+  },
 ];
 
 const routers = createRouter({
@@ -54,9 +52,9 @@ const routers = createRouter({
 routers.beforeEach((to) => {
   const isAuth = store.state.isAuth;
 
-  if (!isAuth && to.name !== "signin") {
+  if (!isAuth && to.name !== "SIGNIN") {
     return "/signin";
-  } else if (isAuth && to.name == "signin") {
+  } else if (isAuth && to.name == "SIGNIN") {
     return "/";
   }
 });
