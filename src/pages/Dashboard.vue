@@ -1,6 +1,6 @@
 <template>
   <div class="w-100 bg-light p-5" style="height: 100vh">
-    <div class="container d-flex justify-content-between mb-2">
+    <!-- <div class="container d-flex justify-content-between mb-2">
       <div>
         <span class="d-block"><b>Department</b></span>
         <span class="d-flex"
@@ -25,7 +25,7 @@
       <div>
         <button type="button" class="btn btn-primary">Add New</button>
       </div>
-    </div>
+    </div> -->
     <div class="container shadow-lg rounded bg-white">
       <div class="d-flex justify-content-between pt-4">
         <span class="d-flex gap-2">
@@ -56,11 +56,12 @@
         <table class="table mt-3">
           <thead>
             <tr class="bg-light">
-              <th scope="col">#</th>
-              <th scope="col">Title</th>
-              <th scope="col">Updated At</th>
-              <th scope="col">Updated By</th>
-              <th scope="col">Action</th>
+              <th scope="col">PO NUMBER</th>
+              <th scope="col">PO TYPE</th>
+              <th scope="col">TRADING PARTNER ID</th>
+              <th scope="col">DATE POSTED</th>
+              <th scope="col">PO DATE</th>
+              <th scope="col">PO STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +70,7 @@
               <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
+             
               <td>
                 <div class="dropdown border w-25">
                   <span
@@ -99,6 +101,7 @@
                   </ul>
                 </div>
               </td>
+              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
             </tr>
             <tr>
               <th scope="row">2</th>
@@ -135,6 +138,7 @@
                   </ul>
                 </div>
               </td>
+              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
             </tr>
             <tr>
               <th scope="row">3</th>
@@ -171,6 +175,7 @@
                   </ul>
                 </div>
               </td>
+              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
             </tr>
             <tr>
               <th scope="row">4</th>
@@ -207,6 +212,7 @@
                   </ul>
                 </div>
               </td>
+              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
             </tr>
             <tr>
               <th scope="row">5</th>
@@ -243,6 +249,7 @@
                   </ul>
                 </div>
               </td>
+              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
             </tr>
           </tbody>
         </table>
