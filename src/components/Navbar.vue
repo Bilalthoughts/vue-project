@@ -5,13 +5,11 @@
         <!-- <img style="width: 80px" src="../assets/image/logo.png" alt=""
       /> -->
         <h2>
-          <span @click="showSidebar" v-if="!ifShowSidebar"
-            >
-          <img src="../assets/icons/menu.svg" alt="">
+          <span @click="showSidebar" v-if="!ifShowSidebar">
+            <img src="../assets/icons/menu.svg" alt="" />
           </span>
-          <span @click="showSidebar" v-if="ifShowSidebar"
-            >
-          <img src="../assets/icons/cross.svg" alt="">
+          <span @click="showSidebar" v-if="ifShowSidebar">
+            <img src="../assets/icons/cross.svg" alt="" />
           </span>
           <span @click.prevent="$router.push('/')">Vue Company</span>
         </h2>
@@ -48,23 +46,24 @@
             class="nav-item d-flex align-items-center"
           >
             <a class="nav-link active gap-1" aria-current="page" href="#">
-              <img src="../assets/icons/home.svg" alt="home">
+              <img src="../assets/icons/home.svg" alt="home" />
               Home</a
             >
           </li>
-          <li class="nav-item d-flex align-items-center">
-            <a class="nav-link gap-1" href="#"
-              >
-              <img src="../assets/icons/analytic.svg" alt="">
+          <li
+            @click.prevent="$router.push('/analytic')"
+            class="nav-item d-flex align-items-center"
+          >
+            <a class="nav-link gap-1" href="#">
+              <img src="../assets/icons/analytic.svg" alt="" />
               Analytics</a
             >
           </li>
           <li
-          class="nav-item p-0 d-flex align-items-center justify-content-center"
+            class="nav-item p-0 d-flex align-items-center justify-content-center"
           >
-          <a class="nav-link gap-1" href="#">
-         
-              <img src="../assets/icons/transaction.svg" alt="">
+            <a class="nav-link gap-1" href="#">
+              <img src="../assets/icons/transaction.svg" alt="" />
 
               <div class="dropdown">
                 <a
@@ -73,17 +72,17 @@
                   role="button"
                   aria-expanded="false"
                 >
-                 Transactions
+                  Transactions
                 </a>
 
-                <ul class="dropdown-menu ">
+                <ul class="dropdown-menu">
                   <li
-                    class="dropdown dropend  dropdownNested px-3"
+                    class="dropdown dropend dropdownNested px-3"
                     style="position: relative"
                   >
                     <a
                       class="dropdown-toggle gap-1 py-1"
-                      style="text-decoration:  none"
+                      style="text-decoration: none"
                       role="button"
                       aria-expanded="false"
                     >
@@ -93,9 +92,24 @@
                       class="dropdown-menu d-none"
                       style="position: absolute; left: 100%; top: 0px"
                     >
-                      <a class="dropdown-item" href="#">Inbox</a>
-                      <a class="dropdown-item" href="#">In-progress</a>
-                      <a class="dropdown-item" href="#">History</a>
+                      <a
+                        @click.prevent="$router.push('/PO-Inbox')"
+                        class="dropdown-item"
+                        href="#"
+                        >Inbox</a
+                      >
+                      <a
+                        @click.prevent="$router.push('/PO-InProgress')"
+                        class="dropdown-item"
+                        href="#"
+                        >In-progress</a
+                      >
+                      <a
+                        @click.prevent="$router.push('/PO-History')"
+                        class="dropdown-item"
+                        href="#"
+                        >History</a
+                      >
                     </div>
                   </li>
                   <li
@@ -114,9 +128,24 @@
                       class="dropdown-menu d-none"
                       style="position: absolute; left: 100%; top: 0px"
                     >
-                      <a class="dropdown-item" href="#">Sent</a>
-                      <a class="dropdown-item" href="#">Saved</a>
-                      <a class="dropdown-item" href="#">History</a>
+                      <a
+                        @click.prevent="$router.push('/ShipmentSent')"
+                        class="dropdown-item"
+                        href="#"
+                        >Sent</a
+                      >
+                      <a
+                        @click.prevent="$router.push('/ShipmentSaved')"
+                        class="dropdown-item"
+                        href="#"
+                        >Saved</a
+                      >
+                      <a
+                        @click.prevent="$router.push('/ShipmentHistory')"
+                        class="dropdown-item"
+                        href="#"
+                        >History</a
+                      >
                     </div>
                   </li>
                   <li
@@ -124,7 +153,7 @@
                     style="position: relative"
                   >
                     <a
-                      class="dropdown-toggle py-1 "
+                      class="dropdown-toggle py-1"
                       style="text-decoration: none"
                       role="button"
                       aria-expanded="false"
@@ -135,27 +164,45 @@
                       class="dropdown-menu d-none"
                       style="position: absolute; left: 100%; top: 0px"
                     >
-                      <a class="dropdown-item" href="#">Sent</a>
-                      <a class="dropdown-item" href="#">Saved</a>
-                      <a class="dropdown-item" href="#">History</a>
+                      <a
+                        @click.prevent="$router.push('/InvoiceSent')"
+                        class="dropdown-item"
+                        href="#"
+                        >Sent</a
+                      >
+                      <a
+                        @click.prevent="$router.push('/InvoiceSaved')"
+                        class="dropdown-item"
+                        href="#"
+                        >Saved</a
+                      >
+                      <a
+                        @click.prevent="$router.push('/InvoiceHistory')"
+                        class="dropdown-item"
+                        href="#"
+                        >History</a
+                      >
                     </div>
                   </li>
-                 
                 </ul>
               </div>
             </a>
           </li>
-          <li class="nav-item d-flex align-items-center ">
-                <a class="nav-link gap-1" href="#"
-                  >
-                  <img src="../assets/icons/document.svg" alt="">
-                  Most Recent Documents </a
-                >
-              </li>
-          <li class="nav-item d-flex align-items-center">
-            <a class="nav-link gap-1" href="#"
-              >
-              <img src="../assets/icons/search.svg" alt="">
+          <li
+            @click.prevent="$router.push('/MostRecentDocs')"
+            class="nav-item d-flex align-items-center"
+          >
+            <a class="nav-link gap-1" href="#">
+              <img src="../assets/icons/document.svg" alt="" />
+              Most Recent Documents
+            </a>
+          </li>
+          <li
+            @click.prevent="$router.push('/DocTracking')"
+            class="nav-item d-flex align-items-center"
+          >
+            <a class="nav-link gap-1" href="#">
+              <img src="../assets/icons/search.svg" alt="" />
               Document Tracking</a
             >
           </li>
@@ -309,7 +356,7 @@ export default {
     },
     testing() {
       console.log("abc");
-      this.$router.push("/DashboardComp");
+      this.$router.push("/");
     },
     logoutFunction() {
       this.$store.commit("logout");

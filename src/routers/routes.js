@@ -5,6 +5,8 @@ import { store } from "../store/store";
 // import DashboardComp from "../pages/Dashboard.vue";
 // import FormPage from "../pages/Form.vue";
 import LayoutWrapper from "../layouts/Layout.vue";
+import { transRoutes } from "./transRouter";
+
 const routes = [
   {
     path: "/",
@@ -12,10 +14,29 @@ const routes = [
     component: () => import("../pages/Home.vue"),
     meta: { layout: LayoutWrapper },
   },
+  ...transRoutes,
   {
     name: "signin",
     path: "/signin",
     component: () => import("../pages/SignIn.vue"),
+  },
+  {
+    name: "analytic",
+    path: "/analytic",
+    component: () => import("../pages/Analytics.vue"),
+    meta: { layout: LayoutWrapper },
+  },
+  {
+    name: "DocTracking",
+    path: "/DocTracking",
+    component: () => import("../pages/DocTracking.vue"),
+    meta: { layout: LayoutWrapper },
+  },
+  {
+    name: "MostRecentDocs",
+    path: "/MostRecentDocs",
+    component: () => import("../pages/MostRecentDoc.vue"),
+    meta: { layout: LayoutWrapper },
   },
   {
     path: "/DashboardComp",
