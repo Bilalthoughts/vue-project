@@ -60,13 +60,11 @@
           :key="index"
         >
           <div v-if="this.buttonClick" class="error-msg">
-            <small>{{ error.$message }}</small>
+            <small>{{ error.$message  }}</small>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <div style="text-align: start">
+        
+        <div style="text-align: start; margin-top: 40px;">
           <input type="checkbox" />Remember me
         </div>
         <div>

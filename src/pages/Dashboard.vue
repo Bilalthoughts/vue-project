@@ -48,7 +48,11 @@
           </div></span
         >
         <span
-          >Search <input class="border border-dark rounded" type="text"
+          >Search
+          <input
+            v-model="search"
+            class="border border-dark rounded"
+            type="text"
         /></span>
       </div>
 
@@ -65,13 +69,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-             
-              <td>
+            <tr v-for="items in filteredArray" :key="items.id">
+              <td>{{ items.PO_Number }}</td>
+
+              <!-- <td>
                 <div class="dropdown border w-25">
                   <span
                     class="dropdown-toggle"
@@ -100,163 +101,23 @@
                     <li><a class="dropdown-item" href="#">40</a></li>
                   </ul>
                 </div>
-              </td>
-              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
+              </td> -->
+              <td>{{ items.PO_Type }}</td>
+              <td>{{ items.Trading_Partner }}</td>
+              <td>{{ items.Date_Posted }}</td>
+              <td>{{ items.PO_Date }}</td>
               <td>
-                <div class="dropdown border w-25">
-                  <span
-                    class="dropdown-toggle"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-list"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                      />
-                    </svg>
-                  </span>
-
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">20</a></li>
-                    <li><a class="dropdown-item" href="#">30</a></li>
-                    <li><a class="dropdown-item" href="#">40</a></li>
-                  </ul>
-                </div>
+                <button type="button" class="btn btn-primary btn-sm">
+                  {{ items.PO_Status }}
+                </button>
               </td>
-              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-              <td>
-                <div class="dropdown border w-25">
-                  <span
-                    class="dropdown-toggle"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-list"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                      />
-                    </svg>
-                  </span>
-
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">20</a></li>
-                    <li><a class="dropdown-item" href="#">30</a></li>
-                    <li><a class="dropdown-item" href="#">40</a></li>
-                  </ul>
-                </div>
-              </td>
-              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-              <td>
-                <div class="dropdown border w-25">
-                  <span
-                    class="dropdown-toggle"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-list"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                      />
-                    </svg>
-                  </span>
-
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">20</a></li>
-                    <li><a class="dropdown-item" href="#">30</a></li>
-                    <li><a class="dropdown-item" href="#">40</a></li>
-                  </ul>
-                </div>
-              </td>
-              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Larry the Bird</td>
-              <td>Larry the Bird</td>
-              <td>Larry the Bird</td>
-              <td>
-                <div class="dropdown border w-25">
-                  <span
-                    class="dropdown-toggle"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-list"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                      />
-                    </svg>
-                  </span>
-
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">20</a></li>
-                    <li><a class="dropdown-item" href="#">30</a></li>
-                    <li><a class="dropdown-item" href="#">40</a></li>
-                  </ul>
-                </div>
-              </td>
-              <td><button type="button" class="btn btn-primary btn-sm">NOT STARTED</button></td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="d-flex justify-content-between align-items-center py-3">
-        <div><small>Showing 1-5 (5)</small></div>
+        <div><small>Showing 1-5 ({{ po_inbox_list.total_count }})</small></div>
         <div>
           <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -279,7 +140,28 @@
 </template>
 
 <script>
+import { po_inbox_list } from "../data/po_inbox.js";
 export default {
   name: "DashboardComp",
+  data() {
+    return {
+      po_inbox_list: po_inbox_list,
+      search: "",
+    };
+  },
+  computed: {
+    filteredArray() {
+      if (!this.search) {
+        return this.po_inbox_list.data;
+      }
+
+      const searchLower = this.search.toLowerCase();
+      return this.po_inbox_list.data.filter((item) =>
+        Object.values(item).some((value) =>
+          String(value).toLowerCase().includes(searchLower)
+        )
+      );
+    },
+  },
 };
 </script>
