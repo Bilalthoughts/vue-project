@@ -6,6 +6,8 @@ import { store } from "./store/store.js";
 import Toast from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import { page } from "./constants/pages";
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+import 'vue3-easy-data-table/dist/style.css';
 
 const app = createApp(App);
 app.use(routers);
@@ -16,6 +18,7 @@ app.use(Toast, {
   duration: 3000,
   dismissible: true,
 });
+app.component('EasyDataTable', Vue3EasyDataTable);
 
 app.config.globalProperties.$page = page;
 
