@@ -93,7 +93,7 @@
                       style="position: absolute; left: 100%; top: 0px"
                     >
                       <a
-                        @click.prevent="$router.push($page.DASHBOARD_PAGE.path)"
+                        @click.prevent="$router.push($page.PO_INBOX.path)"
                         class="dropdown-item"
                         href="#"
                         >Inbox</a

@@ -20,18 +20,18 @@ export const transRoutes = [
   {
     ...page.PO_HISTORY,
     component: () =>
-      import("../pages/transaction/purchase order/PO-History.vue"),
+      import("../pages/transaction/purchase-order/POHistory.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
     ...page.PO_INBOX,
-    component: () => import("../pages/transaction/purchase order/PO-Inbox.vue"),
+    component: () => import("../pages/transaction/purchase-order/POInbox.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
     ...page.PO_PROGRESS,
     component: () =>
-      import("../pages/transaction/purchase order/PO-InProgress.vue"),
+      import("../pages/transaction/purchase-order/POInProgress.vue"),
     meta: { layout: LayoutWrapper },
   },
   {
