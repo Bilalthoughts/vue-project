@@ -22,16 +22,16 @@
             Entries
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" @click="selectedValue('10')">10</a>
+                <a class="dropdown-item" @click="selectedValue(10)">10</a>
               </li>
               <li>
-                <a class="dropdown-item" @click="selectedValue('20')">20</a>
+                <a class="dropdown-item" @click="selectedValue(20)">20</a>
               </li>
               <li>
-                <a class="dropdown-item" @click="selectedValue('30')">30</a>
+                <a class="dropdown-item" @click="selectedValue(30)">30</a>
               </li>
               <li>
-                <a class="dropdown-item" @click="selectedValue('40')">40</a>
+                <a class="dropdown-item" @click="selectedValue(40)">40</a>
               </li>
             </ul>
           </div></span
@@ -42,7 +42,15 @@
             v-model="search"
             class="border border-dark rounded"
             type="text"
-        /></span>
+          />
+
+          <span class="d-block text-end"
+            ><span @click="filterByPoStatus('')" class="shadow btn"
+              ><img src="../../../assets/icons/refresh.svg" alt="" /> Clear All
+              Filter</span
+            ></span
+          >
+        </span>
       </div>
       <div>
         <table class="table mt-3">
@@ -66,28 +74,28 @@
                   </span>
 
                   <ul class="dropdown-menu">
-                    <li>
+                    <li v-for="items in poStatusDataArray" :key="items">
                       <a
                         class="dropdown-item"
-                        @click="filterByPoStatus('Not Started')"
-                        >Not Started</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        @click="filterByPoStatus('Started')"
-                        >Started</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" @click="filterByPoStatus('')"
-                        >Clear Filter</a
+                        @click="filterByPoStatus(items)"
+                        >{{ items }}</a
                       >
                     </li>
                   </ul>
                 </div>
                 PO STATUS
+                <img
+                  v-if="isArrow"
+                  @click="isArrowMethode"
+                  src="../../../assets/icons/arrowDown.svg"
+                  alt=""
+                />
+                <img
+                  v-if="isArrow === false"
+                  @click="isArrowMethode"
+                  src="../../../assets/icons/arrowUp.svg"
+                  alt=""
+                />
               </th>
             </tr>
           </thead>
@@ -145,6 +153,9 @@
             :records="po_inbox_list.total_count"
             :per-page="noOfRows"
             @paginate="myCallback"
+            :options="{
+              chunk: 3,
+            }"
         /></small>
       </div>
     </div>
@@ -166,9 +177,11 @@ export default {
       po_inbox_list: po_inbox_list,
       search: "",
       page: 1,
-      noOfRows: "10",
+      noOfRows: 10,
       filteredData: [],
       poStatusvalue: "",
+      poStatusDataArray: new Set(),
+      isArrow: false,
     };
   },
   methods: {
@@ -185,17 +198,56 @@ export default {
         );
       }
     },
+
+    isArrowMethode() {
+      return (this.isArrow = !this.isArrow);
+    },
   },
   computed: {
+    // filteredArray() {
+    //   return this.poStatusvalue !== "" && this.filteredData.length > 0
+    //     ? this.filteredData
+    //     : this.po_inbox_list.data.filter((item) =>
+    //         Object.values(item).some((value) =>
+    //           String(value).toLowerCase().includes(this.search.toLowerCase())
+    //         )
+    //       );
+    // },
+
     filteredArray() {
-      return this.poStatusvalue !== "" && this.filteredData.length > 0
-        ? this.filteredData
-        : this.po_inbox_list.data.filter((item) =>
-            Object.values(item).some((value) =>
-              String(value).toLowerCase().includes(this.search.toLowerCase())
-            )
-          );
+      if (this.poStatusvalue !== "") {
+        return this.filteredData;
+      } else if (this.search !== "") {
+        return this.po_inbox_list.data.filter((item) =>
+          Object.values(item).some((value) =>
+            String(value).toLowerCase().includes(this.search.toLowerCase())
+          )
+        );
+      }
+      return this.po_inbox_list.data;
     },
+    poStatusArray() {
+      return this.poStatusDataArray;
+    },
+    sortedArrayAlphabetically() {
+      let arrayCopy = [...this.filteredArray];
+      return arrayCopy.sort((a, b) => {
+        let fa = a.PO_Status.toLowerCase();
+        let fb = b.PO_Status.toLowerCase();
+        if (this.isArrow && fa < fb) {
+          return -1;
+        }
+        if (this.isArrow === false && fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+    },
+  },
+  created() {
+    this.poStatusDataArray = new Set(
+      this.po_inbox_list.data.map((item) => item.PO_Status)
+    );
   },
 };
 </script>
