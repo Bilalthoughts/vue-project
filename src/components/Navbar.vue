@@ -305,7 +305,7 @@
                   <a class="dropdown-item" href="#">Form</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a @click="apiDataFunc" class="dropdown-item" href="#">Something else here</a>
                 </li>
               </ul>
             </div>
@@ -366,6 +366,10 @@ export default {
       this.$store.commit("logout");
       this.$router.push(this.$page.SIGNIN.path);
     },
+    async apiDataFunc(){
+      
+          console.log(this.$store.state.ApiData)
+    }
   },
 };
 </script>

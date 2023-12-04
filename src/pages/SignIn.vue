@@ -123,7 +123,7 @@ export default {
   },
 
   methods: {
-    logindata() {
+    async  logindata() {
       this.v$.$touch();
       this.buttonClick = true;
       console.log(this.buttonClick);
@@ -149,6 +149,8 @@ export default {
             },
           });
           this.$router.push("/");
+          await  this.$store.dispatch('ApiData')
+          console.log(this.$store.state.ApiData)
         } else {
           toast("user does not exist", {
             autoClose: 1000,
