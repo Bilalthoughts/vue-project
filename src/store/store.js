@@ -30,11 +30,11 @@ export const store = createStore({
         }
     },
     actions:{
-        async ApiData ({ commit }) {  
+        async ApiData ({ commit },payload) {  
             const options = {
                 method: 'GET',
-                url: 'https://climate-news-feed.p.rapidapi.com/page/1',
-                params: {limit: '10'},
+                url: `https://climate-news-feed.p.rapidapi.com/page/${payload.page}`,
+                params: {limit: payload.noOfRows},
                 headers: {
                   'X-RapidAPI-Key': 'd02dc2523emshf17806f588dd65fp13382djsn4d2312d7bfee',
                   'X-RapidAPI-Host': 'climate-news-feed.p.rapidapi.com'

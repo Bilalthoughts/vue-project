@@ -87,19 +87,11 @@
           </thead>
           <tbody>
             <tr v-for="items in filteredArray" :key="items.id">
-              <td>{{ items.PO_Number }}</td>
-              <td>{{ items.PO_Type }}</td>
-              <td>{{ items.Trading_Partner }}</td>
-              <td>{{ items.Date_Posted }}</td>
-              <td>{{ items.PO_Date }}</td>
-              
-              <td>
-                <button type="button" class="btn btn-primary btn-sm">
-                  {{ items.PO_Status }}
-                </button>
-              </td>
-              <td>{{ items.Ship }}</td>
-              <td>{{ items.INV }}</td>
+              <td style="overflow: hidden; max-width: 300px">{{ items.title }}</td>
+              <td style="overflow: hidden; max-width: 300px">{{ items.source }}</td>
+              <td style="overflow: hidden; max-width: 300px">{{ items.thumbnail }}</td>
+              <td style="overflow: hidden; max-width: 300px">{{ items.url }}</td>
+              <td style="overflow: hidden; max-width: 300px">{{ items.published }}</td>
             </tr>
           </tbody>
         </table>
@@ -110,7 +102,7 @@
         <small>
           <paginationWrapper
             v-model="page"
-            :records="po_inprogress_list.total_count"
+            :records="po_inprogress_list.meta.totalArticles"
             :per-page="noOfRows"
             @paginate="myCallback()"
             :options="{
@@ -129,14 +121,10 @@
 </style>
 
 <script>
-// import { ref, onMounted } from 'vue';
-import { po_inprogress_list } from '../../../data/po-inprogress';
- 
 export default {
   name: 'PO-InProgress',
   data() {
     return {
-      po_inprogress_list,
       page: 1,
       noOfRows: 10,
       search: '',
@@ -150,6 +138,9 @@ export default {
     clearFilter() {
       this.statusSelected = '';
       this.tPSelected = '';
+    },
+    fetchData() {
+      this.$store.dispatch('ApiData', { noOfRows: this.noOfRows, page: this.page });
     },
     myCallback() {
       // console.log();
@@ -180,14 +171,20 @@ export default {
     },
   },
   computed: {
+    GetStateData() {
+      return this.$store.state.ApiData;
+    },
+    po_inprogress_list() {
+      return this.GetStateData;
+    },
     allUniquePOStatus() {
-      return [...new Set(this.po_inprogress_list.data.map((item) => item.PO_Status))];
+      return [...new Set(this.po_inprogress_list.articles.map((item) => item.PO_Status))];
     },
     allUniqueTP() {
-      return [...new Set(this.po_inprogress_list.data.map((item) => item.Trading_Partner))];
+      return [...new Set(this.po_inprogress_list.articles.map((item) => item.Trading_Partner))];
     },
     filteredArray() {
-      let arrFiltered = this.po_inprogress_list.data;
+      let arrFiltered = this.po_inprogress_list.articles;
       if (this.search !== '') {
         arrFiltered = arrFiltered.filter((item) =>
           Object.values(item).some((value) => String(value).toLowerCase().includes(this.search.toLowerCase()))
@@ -203,18 +200,9 @@ export default {
       return arrFiltered;
     },
   },
-// setup(){
-//   const po_inprogress_list = ref([]);
-
-//   onMounted(()=>{
-//     po_inprogress_list.value = this.$store.state.ApiData;
-    
-//   })
-
-//   return {
-//       po_inprogress_list,
-     
-//     };
-// },
+  watch: {
+    noOfRows: 'fetchData',
+    page: 'fetchData',
+  },
 };
 </script>
