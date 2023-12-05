@@ -14,4 +14,5 @@ export const page = {
   SHIPMENT_HISTORY: { name: "SHIPMENT_HISTORY", path: "/ShipmentHistory" },
   SHIPMENT_SAVED: { name: "SHIPMENT_SAVED", path: "/ShipmentSaved" },
   SHIPMENT_SENT: { name: "SHIPMENT_SENT", path: "/ShipmentSent" },
+  Detail_Data: { name: "Detail_Data", path: "/detildata/:id" },
 };

@@ -36,7 +36,7 @@
           <input v-model="search" class="border border-dark rounded" type="text" />
 
           <span class="d-block text-end"
-            ><span @click="clearFilter()" class="shadow btn"><img src="../../../assets/icons/refresh.svg" alt="" /> Clear All Filter</span></span
+            ></span
           >
         </span>
       </div>
@@ -44,54 +44,28 @@
         <table class="table mt-3">
           <thead>
             <tr class="bg-light">
-              <th scope="col">PO NUMBER</th>
-              <th scope="col">PO TYPE</th>
+              <th scope="col">Title</th>
+              <th scope="col">Source</th>
               <th scope="col">
-                <div class="dropdown d-inline">
-                  <span class="dropdown-toggle removeArrow" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="../../../assets/icons/filter.svg" alt="" />
-                  </span>
-
-                  <ul class="dropdown-menu">
-                    <li v-for="item in allUniqueTP" :key="item">
-                      <a class="dropdown-item" @click="tPSelected = item">{{ item }}</a>
-                    </li>
-                  </ul>
-                </div>
-                TRADING PARTNER ID
+                
+                Thumbnail
               </th>
-              <th scope="col">DATE POSTED</th>
-              <th scope="col">PO DATE</th>
-              <th scope="col">
-                <div class="dropdown d-inline">
-                  <span class="dropdown-toggle removeArrow" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="../../../assets/icons/filter.svg" alt="" />
-                  </span>
-
-                  <ul class="dropdown-menu">
-                    <li v-for="item in allUniquePOStatus" :key="item">
-                      <a class="dropdown-item" @click="statusSelected = item">{{ item }}</a>
-                    </li>
-                  </ul>
-                </div>
-                POA
-                <img
-                  @click="statusSort = !statusSort"
-                  :src="statusSort ? require('../../../assets/icons/arrowDown.svg') : require('../../../assets/icons/arrowUp.svg')"
-                  alt=""
-                />
-              </th>
-              <th scope="col">ASN</th>
-              <th scope="col">INV</th>
+              <th scope="col">URL</th>
+              <th scope="col">Published</th>
+              <th scope="col">ID</th>
+             
+              
             </tr>
           </thead>
           <tbody>
-            <tr v-for="items in filteredArray" :key="items.id">
+            <tr v-for="items in filteredArray" :key="items.id" @click.prevent="$router.push({ name: 'Detail_Data', params: { id: items.id } })">
+              
               <td style="overflow: hidden; max-width: 300px">{{ items.title }}</td>
               <td style="overflow: hidden; max-width: 300px">{{ items.source }}</td>
               <td style="overflow: hidden; max-width: 300px">{{ items.thumbnail }}</td>
               <td style="overflow: hidden; max-width: 300px">{{ items.url }}</td>
               <td style="overflow: hidden; max-width: 300px">{{ items.published }}</td>
+              <td style="overflow: hidden; max-width: 300px">{{ items.id }}</td>
             </tr>
           </tbody>
         </table>
@@ -101,8 +75,8 @@
         <div></div>
         <small>
           <paginationWrapper
-            v-model="page"
-            :records="po_inprogress_list.meta.totalArticles"
+            v-model="pageNo"
+            :records="GetStateData.meta.totalArticles"
             :per-page="noOfRows"
             @paginate="myCallback()"
             :options="{
@@ -125,7 +99,7 @@ export default {
   name: 'PO-InProgress',
   data() {
     return {
-      page: 1,
+      pageNo: 1,
       noOfRows: 10,
       search: '',
       statusSelected: '',
@@ -135,56 +109,40 @@ export default {
     };
   },
   methods: {
+  
     clearFilter() {
       this.statusSelected = '';
       this.tPSelected = '';
     },
     fetchData() {
-      this.$store.dispatch('ApiData', { noOfRows: this.noOfRows, page: this.page });
+      this.$store.dispatch('ApiData', { noOfRows: this.noOfRows, pageNo: this.pageNo });
     },
     myCallback() {
       // console.log();
     },
-    sortData(arrFiltered) {
-      if (this.statusSort) {
-        arrFiltered = arrFiltered.sort((a, b) => {
-          if (a.PO_Status < b.PO_Status) {
-            return -1;
-          }
-          if (a.PO_Status > b.PO_Status) {
-            return 1;
-          }
-          return 0;
-        });
-      } else {
-        arrFiltered = arrFiltered.sort((a, b) => {
-          if (a.PO_Status > b.PO_Status) {
-            return -1;
-          }
-          if (a.PO_Status < b.PO_Status) {
-            return 1;
-          }
-          return 0;
-        });
-      }
-      return arrFiltered;
-    },
+   
   },
   computed: {
     GetStateData() {
       return this.$store.state.ApiData;
     },
     po_inprogress_list() {
-      return this.GetStateData;
-    },
+   return this.GetStateData.articles;  
+ 
+  
+},
+
+
+
+
     allUniquePOStatus() {
-      return [...new Set(this.po_inprogress_list.articles.map((item) => item.PO_Status))];
+      return [...new Set(this.po_inprogress_list.map((item) => item.PO_Status))];
     },
     allUniqueTP() {
-      return [...new Set(this.po_inprogress_list.articles.map((item) => item.Trading_Partner))];
+      return [...new Set(this.po_inprogress_list.map((item) => item.Trading_Partner))];
     },
     filteredArray() {
-      let arrFiltered = this.po_inprogress_list.articles;
+      let arrFiltered = this.po_inprogress_list;
       if (this.search !== '') {
         arrFiltered = arrFiltered.filter((item) =>
           Object.values(item).some((value) => String(value).toLowerCase().includes(this.search.toLowerCase()))
@@ -196,13 +154,16 @@ export default {
       if (this.tPSelected !== '') {
         arrFiltered = arrFiltered.filter((item) => item.Trading_Partner.toLowerCase() === this.tPSelected.toLowerCase());
       }
-      arrFiltered = this.sortData(arrFiltered);
+      
       return arrFiltered;
     },
   },
   watch: {
-    noOfRows: 'fetchData',
-    page: 'fetchData',
+    noOfRows: {
+      handler: 'fetchData',
+      immediate:true
+    },
+    pageNo: 'fetchData',
   },
 };
 </script>

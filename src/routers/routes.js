@@ -24,6 +24,11 @@ const routes = [
     meta: { layout: LayoutWrapper },
   },
   {
+    ...page.Detail_Data,
+    component: () => import("../pages/DetailData.vue"),
+    meta: { layout: LayoutWrapper },
+  },
+  {
     ...page.DOC_TRACKING,
     component: () => import("../pages/DocTracking.vue"),
     meta: { layout: LayoutWrapper },

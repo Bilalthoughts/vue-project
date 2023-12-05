@@ -16,6 +16,7 @@
     "bootstrap-icons": "^1.11.1",
     "core-js": "^3.33.2",
     "secure-ls": "^1.2.6",
+    "uuid": "^9.0.1",
     "v-pagination-3": "^0.1.7",
     "vue": "^3.2.13",
     "vue-router": "^4.2.5",
