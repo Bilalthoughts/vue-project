@@ -1,24 +1,31 @@
-import { createStore } from "vuex";
-import createPersistedState from "vuex-persistedstate";
-import SecureLS from "secure-ls";
+import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+import SecureLS from 'secure-ls';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';const ls = new SecureLS({ isCompression: false });
+import { v4 as uuidv4 } from 'uuid';
+const ls = new SecureLS({ isCompression: false });
 
 export const store = createStore({
   state() {
     return {
-      userId: null,  
+      userId: null,
       email: '',
       password: '',
       isAuth: false,
       ApiData: null,
+      name:null,
+      role:null,
+      isregester:false,
     };
   },
   mutations: {
     loginData(state, action) {
-      state.email = action.payload.email;
-      state.password = action.payload.password;
-      state.isAuth = action.payload.isAuth;
+      state.email = action.payload.data.email;
+      state.password = action.payload.data.password;
+      state.isAuth = action.payload.data.isAuth;
+      state.name = action.payload.data.name;
+      state.role = action.payload.data.role;
+      state.isregester = action.payload.data.isregester;
     },
     logout(state) {
       state.email = '';
@@ -28,9 +35,9 @@ export const store = createStore({
     setApiData(state, action) {
       state.ApiData = {
         ...action.payload.data,
-        articles: action.payload.data.articles.map(article => ({
+        articles: action.payload.data.articles.map((article) => ({
           ...article,
-          id: uuidv4()
+          id: uuidv4(),
         })),
       };
     },
@@ -58,6 +65,45 @@ export const store = createStore({
         console.error(error);
       }
     },
+    async loginUser({ commit }, action) {
+      const {isAuth,email,password} = action.payload;
+
+      try {
+        const response = await axios.post('http://localhost:5000/api/user/login', {
+          email,
+          password,
+        });
+        commit('loginData', {
+          payload: {
+            data: { ...response.data, isAuth },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async registerUser({commit},action){
+      const {name,email,password,isregester} = action.payload;
+      try{
+        const response = await axios.post('http://localhost:5000/api/user/create',{
+          name,
+          email,
+          password,
+          role:'user',
+        })
+        commit('loginData',{
+          payload:{
+            data: response.data,
+            isregester,
+          }
+        });
+       
+
+      }
+      catch(error){
+        console.error(error)
+      }
+    },
   },
   plugins: [
     createPersistedState({
@@ -69,5 +115,3 @@ export const store = createStore({
     }),
   ],
 });
-
-

@@ -1,5 +1,6 @@
 export const page = {
   SIGNIN: { name: "SIGNIN", path: "/signin" },
+  SIGNUP: { name: "SIGNUP", path: "/signup" },
   ANALYTICS: { name: "ANALYTICS", path: "/analytic" },
   DOC_TRACKING: { name: "DOC_TRACKING", path: "/DocTracking" },
   MOST_RECENT_DOCS: { name: "MOST_RECENT_DOCS", path: "/MostRecentDocs" },

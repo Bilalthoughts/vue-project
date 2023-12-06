@@ -3,7 +3,7 @@
     <div class="CardBody">
       <div class="widthclass">
         <div class="flexclass">
-          <div><b><h3>Login</h3></b></div>
+          <div><b><h3>SignUp</h3></b></div>
           <div style="font-size: x-large">
             <span>&#128743; </span><span> &#127760; </span>
           </div>
@@ -12,15 +12,39 @@
           <img style="width: 130px" src="../assets/image/logo.png" alt="" />
         </div>
         <div>
-          <p class="labelClass">Welcome Back, plz login to you account</p>
+          <p class="labelClass">Welcome, plz SignUp to your account</p>
         </div>
         <div>
           <label for="emailUserName" class="labelClass"
-            >Email or UserName</label
+            >Name</label
+          >
+          <input
+            v-model.trim="v$.form.name.$model"
+            @keyup.enter="signupData"
+            type="name"
+            name=""
+            id="name"
+            class="inputclass"
+            :class="{ 'border-danger': v$.form.name.$error && buttonClick }"
+          />
+          <div
+            class="text-danger"
+            v-for="(error, index) of v$.form.name.$errors"
+            :key="index"
+          >
+            <div v-if="this.buttonClick" class="error-msg">
+              <small>{{ error.$message }}</small>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div>
+          <label for="emailUserName" class="labelClass"
+            >Email</label
           >
           <input
             v-model.trim="v$.form.email.$model"
-            @keyup.enter="logindata"
+            @keyup.enter="signupData"
             type="email"
             name=""
             id="email"
@@ -37,6 +61,7 @@
             </div>
           </div>
         </div>
+        
 
         <br />
         <div class="flexclass">
@@ -47,7 +72,7 @@
         </div>
         <input
           type="password"
-          @keyup.enter="logindata"
+          @keyup.enter="signupData"
           v-model.trim="v$.form.password.$model"
           name=""
           id="password"
@@ -65,15 +90,15 @@
         </div>
         
         <div style="text-align: start; margin-top: 40px;">
-          <span class="text-primary" style="cursor: pointer;"  @click="$router.push($page.SIGNUP.path)">SignUp</span>
+          Already a member? <span class="text-primary" style="cursor:pointer;" @click.prevent="$router.push($page.SIGNIN.path)">Login</span>
         </div>
         <div>
           <button
-            @keyup.enter="logindata"
-            @click="logindata"
+            @keyup.enter="signupData"
+            @click="signupData"
             class="butonClass"
           >
-            Login
+            SignUp
           </button>
         </div>
         <div class="footertext">
@@ -91,7 +116,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 
 export default {
-  name: "SignIn",
+  name: "SignUp",
   setup() {
     return { v$: useVuelidate() };
   },
@@ -99,6 +124,7 @@ export default {
   data() {
     return {
       isAuth: false,
+      isregester: false,
       buttonClick: false,
       form: {
         email: "",
@@ -118,12 +144,16 @@ export default {
           required,
           min: minLength(6),
         },
+        name: {
+          required,
+          min: minLength(3),
+        },
       },
     };
   },
 
   methods: {
-      async logindata() {
+      async signupData() {
       this.v$.$touch();
       this.buttonClick = true;
       console.log(this.buttonClick);
@@ -142,18 +172,20 @@ export default {
 
         // if (user.length > 0) {
           
-          await this.$store.dispatch("loginUser", {
+          await this.$store.dispatch("registerUser", {
             payload: {
               email: this.form.email,
               password: this.form.password,
-              isAuth: !this.isAuth,
+              name: this.form.name,
+              isregester: !this.isregester
             },
           });
-          console.log(this.$store.state.isAuth,'this.$store.state.isAuth')
+          
+          this.$router.push(this.$page.SIGNIN.path);
+          
+          if(this.$store.state.isregester){
+            console.log(this.$store.state.isregester,'this.$store.state.isregester')
 
-          if(this.$store.state.isAuth){
-
-            this.$router.push("/");
           }
         
          else {
