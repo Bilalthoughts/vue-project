@@ -173,27 +173,29 @@ export default {
 
         // if (user.length > 0) {
           
-          await this.$store.dispatch("registerUser", {
-            payload: {
-              email: this.form.email,
-              password: this.form.password,
-              name: this.form.name,
-              isregester: !this.isregester
-            },
-          });
-          console.log(this.$store.state.isregester, 'this.$store.state.isregester');
           
-          if(this.v$.$pending === 0 && this.$store.state.isregester  ){
-            this.$router.push(this.$page.SIGNIN.path);
+          
+          await this.$store.dispatch("registerUser", {
+  payload: {
+    email: this.form.email,
+    password: this.form.password,
+    name: this.form.name,
+    isregester: !this.isregester,
+  },
+});
 
-          }
-        
-         else {
-          toast("Error ", {
-            autoClose: 1000,
-            type: "error",
-          });
-        }
+console.log("Registration completed:", this.$store.state.isregester);
+
+if (!this.v$.$error && this.$store.state.isregester) {
+  console.log("Routing to Sign In page");
+  this.$router.push(this.$page.SIGNIN.path);
+} else {
+  console.error("Error during registration");
+  toast("Error during registration", {
+    autoClose: 1000,
+    type: "error",
+  });
+}
       }
     },
   },
