@@ -51,6 +51,11 @@ const routes = [
     meta: { layout: LayoutWrapper },
   },
   {
+    ...page.DASHBOARD_PAGE,
+    component: () => import('../pages/Analytics.vue'),
+    // meta: { layout: LayoutWrapper },
+  },
+  {
     ...page.FORM_PAGE,
     component: () => import('../pages/Form.vue'),
   },
