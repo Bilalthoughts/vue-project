@@ -25,7 +25,7 @@ export const store = createStore({
       state.isAuth = action.payload.data.isAuth;
       state.name = action.payload.data.name;
       state.role = action.payload.data.role;
-      state.isregester = action.payload.data.isregester;
+      state.isregester = action.payload.isregester;
     },
     logout(state) {
       state.email = '';

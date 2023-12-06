@@ -180,16 +180,15 @@ export default {
               isregester: !this.isregester
             },
           });
-          
-          this.$router.push(this.$page.SIGNIN.path);
+          console.log(this.$store.state.isregester, 'this.$store.state.isregester');
           
           if(this.$store.state.isregester){
-            console.log(this.$store.state.isregester,'this.$store.state.isregester')
+            this.$router.push(this.$page.SIGNIN.path);
 
           }
         
          else {
-          toast("user does not exist", {
+          toast("Error ", {
             autoClose: 1000,
             type: "error",
           });
