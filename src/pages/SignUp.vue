@@ -128,6 +128,7 @@ export default {
       buttonClick: false,
       form: {
         email: "",
+        name: "",
         password: "",
         buttonClick: false,
       },
@@ -157,8 +158,8 @@ export default {
       this.v$.$touch();
       this.buttonClick = true;
       console.log(this.buttonClick);
-      if (!this.form.email && !this.form.password) {
-        toast("Plz fill the login details", {
+      if (!this.form.email && !this.form.password && !this.form.name) {
+        toast("Plz fill the signup details", {
           autoClose: 1000,
           type: "error",
         });
@@ -182,7 +183,7 @@ export default {
           });
           console.log(this.$store.state.isregester, 'this.$store.state.isregester');
           
-          if(this.$store.state.isregester){
+          if(this.v$.$pending === 0 && this.$store.state.isregester  ){
             this.$router.push(this.$page.SIGNIN.path);
 
           }
