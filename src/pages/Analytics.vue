@@ -47,15 +47,19 @@
         <div class="rowDivChild bg-white rounded shadow-lg flex-grow-1">
           <apexChart type="line" height="100%" :options="chartOptions3" :series="series3"></apexChart>
         </div>
-        <div class="rowDivChild bg-white rounded shadow-lg"><h6 class="text-start p-3"><b>Document Count By Tp-last-Twelve-Month</b></h6></div>
-        <div class="rowDivChild bg-white rounded shadow-lg"><h6 class="text-start p-3"><b>Document Count By Tp-One-Week</b></h6></div>
+        <div class="rowDivChild bg-white rounded shadow-lg">
+          <h6 class="text-start p-3"><b>Document Count By Tp-last-Twelve-Month</b></h6>
+        </div>
+        <div class="rowDivChild bg-white rounded shadow-lg">
+          <h6 class="text-start p-3"><b>Document Count By Tp-One-Week</b></h6>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <style scoped>
 .parentDiv {
-  height: 88vh;
+  height: 85vh;
   width: 100%;
 }
 .rowDiv {
@@ -350,9 +354,6 @@ export default {
               y: 9340.85,
               marker: {
                 size: 0,
-              },
-              image: {
-                path: '../../assets/images/ico-instagram.png',
               },
             },
           ],

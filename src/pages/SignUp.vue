@@ -3,10 +3,10 @@
     <div class="CardBody">
       <div class="widthclass">
         <div class="flexclass">
-          <div><b><h3>SignUp</h3></b></div>
-          <div style="font-size: x-large">
-            <span>&#128743; </span><span> &#127760; </span>
+          <div>
+            <b><h3>SignUp</h3></b>
           </div>
+          <div style="font-size: x-large"><span>&#128743; </span><span> &#127760; </span></div>
         </div>
         <div class="flexClassLogo">
           <img style="width: 130px" src="../assets/image/logo.png" alt="" />
@@ -15,9 +15,7 @@
           <p class="labelClass">Welcome, plz SignUp to your account</p>
         </div>
         <div>
-          <label for="emailUserName" class="labelClass"
-            >Name</label
-          >
+          <label for="emailUserName" class="labelClass">Name</label>
           <input
             v-model.trim="v$.form.name.$model"
             @keyup.enter="signupData"
@@ -27,21 +25,15 @@
             class="inputclass"
             :class="{ 'border-danger': v$.form.name.$error && buttonClick }"
           />
-          <div
-            class="text-danger"
-            v-for="(error, index) of v$.form.name.$errors"
-            :key="index"
-          >
+          <div class="text-danger" v-for="(error, index) of v$.form.name.$errors" :key="index">
             <div v-if="this.buttonClick" class="error-msg">
               <small>{{ error.$message }}</small>
             </div>
           </div>
         </div>
-        <br>
+        <br />
         <div>
-          <label for="emailUserName" class="labelClass"
-            >Email</label
-          >
+          <label for="emailUserName" class="labelClass">Email</label>
           <input
             v-model.trim="v$.form.email.$model"
             @keyup.enter="signupData"
@@ -51,17 +43,12 @@
             class="inputclass"
             :class="{ 'border-danger': v$.form.email.$error && buttonClick }"
           />
-          <div
-            class="text-danger"
-            v-for="(error, index) of v$.form.email.$errors"
-            :key="index"
-          >
+          <div class="text-danger" v-for="(error, index) of v$.form.email.$errors" :key="index">
             <div v-if="this.buttonClick" class="error-msg">
               <small>{{ error.$message }}</small>
             </div>
           </div>
         </div>
-        
 
         <br />
         <div class="flexclass">
@@ -74,49 +61,60 @@
           type="password"
           @keyup.enter="signupData"
           v-model.trim="v$.form.password.$model"
-          name=""
+          name="password"
           id="password"
           class="inputclass"
           :class="{ 'border-danger': v$.form.password.$error && buttonClick }"
         />
-        <div
-          class="text-danger"
-          v-for="(error, index) of v$.form.password.$errors"
-          :key="index"
-        >
+        <div class="text-danger" v-for="(error, index) of v$.form.password.$errors" :key="index">
           <div v-if="this.buttonClick" class="error-msg">
-            <small>{{ error.$message  }}</small>
+            <small>{{ error.$message }}</small>
           </div>
         </div>
         
-        <div style="text-align: start; margin-top: 40px;">
-          Already a member? <span class="text-primary" style="cursor:pointer;" @click.prevent="$router.push($page.SIGNIN.path)">Login</span>
+       
+       <div class="pt-4" v-if="$store.state.BoolianOtp">
+          <label for="emailUserName" class="labelClass">Enter OTP <small>(check you email)</small></label>
+          <input
+            v-model.trim="v$.form.otp.$model"
+            @keyup.enter="submitOtp"
+            type="text"
+            name="number"
+            id="otp"
+            class="inputclass"
+            :class="{ 'border-danger': v$.form.otp.$error && buttonClick }"
+          />
+          <div class="text-danger" v-for="(error, index) of v$.form.otp.$errors" :key="index">
+            <div v-if="this.buttonClick" class="error-msg">
+              <small>{{ error.$message }}</small>
+            </div>
+          </div>
+          <button  @click.prevent="submitOtp" class="btn btn-sm mt-1 btn-success">Submit</button>
+        </div>
+        <div style="text-align: start; margin-top: 40px">
+          Already a member? <span class="text-primary" style="cursor: pointer" @click.prevent="$router.push($page.SIGNIN.path)">Login</span>
         </div>
         <div>
-          <button
-            @keyup.enter="signupData"
-            @click="signupData"
-            class="butonClass"
-          >
-            SignUp
-          </button>
+          <button @keyup.enter="signupData" @click="signupData" class="butonClass">SignUp</button>
         </div>
         <div class="footertext">
+          
           <p>@2023 HeavyCoders</p>
         </div>
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
-import { toast } from "vue3-toastify";
+import { toast } from 'vue3-toastify';
 // import { loginCredentials } from "../data/users.js";
-import { useVuelidate } from "@vuelidate/core";
-import { required, email, minLength } from "@vuelidate/validators";
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, minLength } from '@vuelidate/validators';
 
 export default {
-  name: "SignUp",
+  name: 'SignUp',
   setup() {
     return { v$: useVuelidate() };
   },
@@ -127,9 +125,10 @@ export default {
       isregester: false,
       buttonClick: false,
       form: {
-        email: "",
-        name: "",
-        password: "",
+        email: '',
+        name: '',
+        password: '',
+        otp: '',
         buttonClick: false,
       },
     };
@@ -140,10 +139,15 @@ export default {
         email: {
           required,
           email,
+        
         },
         password: {
           required,
           min: minLength(6),
+        },
+        otp: {
+          min: minLength(2),
+          
         },
         name: {
           required,
@@ -154,17 +158,29 @@ export default {
   },
 
   methods: {
-      async signupData() {
+    async submitOtp() {
+      console.log(this.form.otp,'thisl.otp')
+      await this.$store.dispatch('verifyOtp', {
+        payload: {
+          email: this.form.email,
+          otp: this.form.otp,
+        },
+      });
+
+      if (this.$store.state.loginRoute ) {
+        this.$router.push(this.$page.SIGNIN.path);
+      }
+    },
+    async signupData() {
       this.v$.$touch();
       this.buttonClick = true;
       console.log(this.buttonClick);
       if (!this.form.email && !this.form.password && !this.form.name) {
-        toast("Plz fill the signup details", {
+        toast('Plz fill the signup details', {
           autoClose: 1000,
-          type: "error",
+          type: 'error',
         });
-      } 
-      else if (this.v$.$validate) {
+      } else if (this.v$.$validate) {
         // const user = loginCredentials.filter(
         //   (credentials) =>
         //     this.form.email === credentials.email &&
@@ -172,30 +188,29 @@ export default {
         // );
 
         // if (user.length > 0) {
-          
-          
-          
-          await this.$store.dispatch("registerUser", {
-  payload: {
-    email: this.form.email,
-    password: this.form.password,
-    name: this.form.name,
-    isregester: !this.isregester,
-  },
-});
 
-console.log("Registration completed:", this.$store.state.isregester);
+        
 
-if (!this.v$.$error && this.$store.state.isregester) {
-  console.log("Routing to Sign In page");
-  this.$router.push(this.$page.SIGNIN.path);
-} else {
-  console.error("Error during registration");
-  toast("Error during registration", {
-    autoClose: 1000,
-    type: "error",
-  });
-}
+        console.log('Registration completed:', this.$store.state.isregester);
+
+        if (!this.v$.$error ) {
+          await this.$store.dispatch('registerUser', {
+          payload: {
+            email: this.form.email,
+            password: this.form.password,
+            name: this.form.name,
+            isregester: !this.isregester,
+           
+          },
+        });
+          
+        } else {
+          console.error('Error during registration');
+          toast('Error during registration', {
+            autoClose: 1000,
+            type: 'error',
+          });
+        }
       }
     },
   },

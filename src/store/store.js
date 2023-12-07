@@ -13,9 +13,12 @@ export const store = createStore({
       password: '',
       isAuth: false,
       ApiData: null,
+      otp: null,
       name:null,
       role:null,
       isregester:false,
+      BoolianOtp:false,
+      loginRoute:false,
     };
   },
   mutations: {
@@ -26,6 +29,16 @@ export const store = createStore({
       state.name = action.payload.data.name;
       state.role = action.payload.data.role;
       state.isregester = action.payload.isregester;
+    },
+    setBoolianOtp(state, value) {
+      state.BoolianOtp = value;
+    },
+    setotp(state, value) {
+      state.otp = value.payload.otp;
+      state.email  = value.payload.email;
+    },
+    loginRoute(state, value) {
+      state.loginRoute = value;
     },
     logout(state) {
       state.email = '';
@@ -83,26 +96,64 @@ export const store = createStore({
       }
     },
     async registerUser({commit},action){
-      const {name,email,password,isregester} = action.payload;
+      const {email,name,password,role,isregester} = action.payload;
+      
       try{
-        const response = await axios.post('http://localhost:5000/api/user/create',{
-          name,
-          email,
-          password,
-          role:'user',
-        })
-        commit('loginData',{
-          payload:{
-            data: response.data,
-            isregester,
-          }
-        });
+        
+        const signupResponse = await axios.post('http://localhost:5000/api/user/create',{
+              name,
+              email,
+              password,
+              role
+            })
+
+            commit('loginData',{
+              payload:{
+                data: signupResponse.data,
+                isregester,
+              }
+            });
+          
+
+        
+        
+        if(signupResponse.status === 201){
+          commit('setBoolianOtp', true);
+          await axios.post('http://localhost:5000/api/otp',{
+            email,
+          })
+         
+         
+
+        }
+      
        
 
       }
       catch(error){
         console.error(error)
       }
+    },
+    async verifyOtp({commit },action){
+      const {email,otp} = action.payload
+      console.log(email,otp,'email as otp')
+      try{
+        if(email && otp){
+          const verifyResponse = await axios.post('http://localhost:5000/api/verify-otp',{
+        email,
+        otp
+    })
+    if(verifyResponse){
+
+      commit('loginRoute',true)
+
+    }
+        }
+      }
+      catch(error){
+        console.error(error.message)
+      }
+      
     },
   },
   plugins: [

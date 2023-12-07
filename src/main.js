@@ -10,12 +10,14 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 import Pagination from 'v-pagination-3';
 import VueApexCharts from "vue3-apexcharts";
+import ApexCharts from 'apexcharts';
 
 const app = createApp(App);
 app.use(routers);
 app.use(store);
 app.use(VueApexCharts);
 app.component('apexChart', VueApexCharts)
+app.config.globalProperties.$apexCharts = ApexCharts;
 
 
 app.use(Toast, {
