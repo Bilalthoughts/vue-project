@@ -242,11 +242,47 @@
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li> -->
         </ul>
-        <div class="d-flex gap-1" role="search">
-          <img style="width: 25px;" src="../assets/icons/person.svg" alt=""><span class="d-flex flex-column align-items-center gap-0 " style="line-height: 16px; font-size: larger;"><span>faran muneer</span> 
-            <span> (user)</span>
-          </span>
-        </div>
+        <div class="dropdown  mx-3">
+              <button
+                class="customBgbuton dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                @click="toggleSidebar"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  fill="black"
+                  class="bi bi-person-circle"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                  />
+                </svg>
+                <span class="px-2"> {{ $store.state.name  }} ({{$store.state.role  }})</span>
+              </button>
+              <ul class="dropdown-menu ">
+                <li>
+                  <span class="dropdown-item" 
+                    >{{ $store.state.email  }}</span
+                  >
+                </li>
+                <li @click.prevent="logoutFunction">
+                  <a class="dropdown-item" href="#">Logout</a>
+                </li>
+                <li @click.prevent="$router.push('/FormPage')">
+                  <a class="dropdown-item" href="#">Form</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </div>
       </div>
     </div>
   </nav>
@@ -275,11 +311,15 @@
   display: block !important;
 }
 .customBgbuton {
-  background-color: #eaeaea;
+  background-color: white;
   padding: 5px 10px 5px 10px;
   border: none;
   border-radius: 10%;
   font-size: large;
+  
+}
+.customBgbuton::after{
+  display: none;
 }
 </style>
 
