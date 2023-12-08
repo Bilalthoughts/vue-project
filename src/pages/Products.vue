@@ -116,6 +116,9 @@ export default {
     myCallback() {
       // console.log();
     },
+    dispatchArrayList(){
+        this.$store.dispatch('allProducts')
+    }
   },
   computed: {
     allProductList() {
@@ -125,5 +128,12 @@ export default {
         return console.log(this.allProductList,'allProductListsss')
     }
   },
+  watch:{
+    noOfRows:{
+        handler:'dispatchArrayList',
+        immediate:true
+    }
+
+  }
 };
 </script>
