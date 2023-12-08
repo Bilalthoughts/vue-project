@@ -152,7 +152,6 @@ export default {
           console.log(this.$store.state.isAuth,'this.$store.state.isAuth')
 
           if(this.$store.state.isAuth){
-
             this.$router.push("/");
           }
         

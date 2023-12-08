@@ -14,11 +14,13 @@ export const store = createStore({
       isAuth: false,
       ApiData: null,
       otp: null,
-      name:null,
-      role:null,
-      isregester:false,
-      BoolianOtp:false,
-      loginRoute:false,
+      name: null,
+      role: null,
+      isregester: false,
+      BoolianOtp: false,
+      loginRoute: false,
+      token: '',
+      allProductsArray: [],
     };
   },
   mutations: {
@@ -29,13 +31,14 @@ export const store = createStore({
       state.name = action.payload.data.name;
       state.role = action.payload.data.role;
       state.isregester = action.payload.isregester;
+      state.token = action.payload.data.token;
     },
     setBoolianOtp(state, value) {
       state.BoolianOtp = value;
     },
     setotp(state, value) {
       state.otp = value.payload.otp;
-      state.email  = value.payload.email;
+      state.email = value.payload.email;
     },
     loginRoute(state, value) {
       state.loginRoute = value;
@@ -53,6 +56,9 @@ export const store = createStore({
           id: uuidv4(),
         })),
       };
+    },
+    setAllProducts(state, action) {
+      state.allProductsArray = action.payload.data;
     },
   },
   actions: {
@@ -79,7 +85,7 @@ export const store = createStore({
       }
     },
     async loginUser({ commit }, action) {
-      const {isAuth,email,password} = action.payload;
+      const { isAuth, email, password } = action.payload;
 
       try {
         const response = await axios.post('http://localhost:5000/api/user/login', {
@@ -95,65 +101,91 @@ export const store = createStore({
         console.error(error);
       }
     },
-    async registerUser({commit},action){
-      const {email,name,password,role,isregester} = action.payload;
-      
-      try{
-        
-        const signupResponse = await axios.post('http://localhost:5000/api/user/create',{
-              name,
-              email,
-              password,
-              role
-            })
+    async registerUser({ commit }, action) {
+      const { email, name, password, role, isregester } = action.payload;
 
-            commit('loginData',{
-              payload:{
-                data: signupResponse.data,
-                isregester,
-              }
-            });
-          
+      try {
+        const signupResponse = await axios.post('http://localhost:5000/api/user/create', {
+          name,
+          email,
+          password,
+          role,
+        });
 
-        
-        
-        if(signupResponse.status === 201){
+        commit('loginData', {
+          payload: {
+            data: signupResponse.data,
+            isregester,
+          },
+        });
+
+        if (signupResponse.status === 201) {
           commit('setBoolianOtp', true);
-          await axios.post('http://localhost:5000/api/otp',{
+          await axios.post('http://localhost:5000/api/otp', {
             email,
-          })
-         
-         
-
+          });
         }
-      
-       
-
-      }
-      catch(error){
-        console.error(error)
+      } catch (error) {
+        console.error(error);
       }
     },
-    async verifyOtp({commit },action){
-      const {email,otp} = action.payload
-      console.log(email,otp,'email as otp')
-      try{
-        if(email && otp){
-          const verifyResponse = await axios.post('http://localhost:5000/api/verify-otp',{
-        email,
-        otp
-    })
-    if(verifyResponse){
-
-      commit('loginRoute',true)
-
-    }
+    async verifyOtp({ commit }, action) {
+      const { email, otp } = action.payload;
+      console.log(email, otp, 'email as otp');
+      try {
+        if (email && otp) {
+          const verifyResponse = await axios.post('http://localhost:5000/api/verify-otp', {
+            email,
+            otp,
+          });
+          if (verifyResponse) {
+            commit('loginRoute', true);
+          }
         }
+      } catch (error) {
+        console.error(error.message);
       }
-      catch(error){
-        console.error(error.message)
+    },
+
+    async allProducts({ commit }) {
+      try {
+        const response = await axios.get('http://localhost:5000/api/products', {
+          headers: {
+            Authorization: `Bearer ${store.state.token}`,
+          },
+        });
+        commit('setAllProducts', {
+          payload: {
+            data: response.data,
+          },
+        });
+      } catch (error) {
+        console.error(error.message);
       }
-      
+    },
+    async createProduct({state }, payload) {
+      console.log(payload, 'papapap');
+      // const { title, description, category, status, photo, price, originalPrice, unit, createdBy, delivery, quantity } = payload;
+
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/api/product',
+          {
+            payload
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+
+        if(response.status === 201){
+          store.dispatch('allProducts')
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
     },
   },
   plugins: [

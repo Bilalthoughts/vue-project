@@ -3,7 +3,7 @@ export const page = {
   SIGNUP: { name: "SIGNUP", path: "/signup" },
   ANALYTICS: { name: "ANALYTICS", path: "/analytic" },
   DOC_TRACKING: { name: "DOC_TRACKING", path: "/DocTracking" },
-  MOST_RECENT_DOCS: { name: "MOST_RECENT_DOCS", path: "/MostRecentDocs" },
+  PRODUCTS: { name: "PRODUCTS", path: "/productsPage" },
   DASHBOARD_PAGE: { name: "DASHBOARD_PAGE", path: "/DashboardComp" },
   FORM_PAGE: { name: "FORM_PAGE", path: "/FormPage" },
   INVOICE_HISTORY: { name: "INVOICE_HISTORY", path: "/InvoiceHistory" },
@@ -15,5 +15,7 @@ export const page = {
   SHIPMENT_HISTORY: { name: "SHIPMENT_HISTORY", path: "/ShipmentHistory" },
   SHIPMENT_SAVED: { name: "SHIPMENT_SAVED", path: "/ShipmentSaved" },
   SHIPMENT_SENT: { name: "SHIPMENT_SENT", path: "/ShipmentSent" },
-  Detail_Data: { name: "Detail_Data", path: "/detildata/:id" },
+  DETAIL_DATA: { name: "DETAIL_DATA", path: "/detildata/:id" },
+  SINGLE_PRODUCTS: { name: "SINGLE_PRODUCTS", path: "/singleproduct/:id" },
+  CREATE_PRODUCT: { name: "CREATE_PRODUCT", path: "/CreateProduct" },
 };

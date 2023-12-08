@@ -192,11 +192,11 @@
             </a>
           </li>
           <li
-            @click.prevent="$router.push($page.MOST_RECENT_DOCS.path)"
+            @click.prevent="$router.push($page.PRODUCTS.path)"
             class="nav-item d-flex align-items-center"
           >
             <a class="nav-link gap-1" href="#">
-              <img style="width: 25px;"  src="../assets/icons/document.svg" alt="" />
+              <img style="width: 25px;"  src="../assets/icons/products.svg" alt="" />
               
             </a>
           </li>

@@ -31,7 +31,7 @@ const routes = [
     meta:{public:true}
   },
   {
-    ...page.Detail_Data,
+    ...page.DETAIL_DATA,
     component: () => import('../pages/DetailData.vue'),
     meta: { layout: LayoutWrapper },
   },
@@ -41,8 +41,18 @@ const routes = [
     meta: { layout: LayoutWrapper },
   },
   {
-    ...page.MOST_RECENT_DOCS,
-    component: () => import('../pages/MostRecentDoc.vue'),
+    ...page.PRODUCTS,
+    component: () => import('../pages/Products.vue'),
+    meta: { layout: LayoutWrapper },
+  },
+  {
+    ...page.CREATE_PRODUCT,
+    component: () => import('../pages/CreateProduct.vue'),
+    meta: { layout: LayoutWrapper },
+  },
+  {
+    ...page.SINGLE_PRODUCTS,
+    component: () => import('../pages/SingleProduct.vue'),
     meta: { layout: LayoutWrapper },
   },
   {

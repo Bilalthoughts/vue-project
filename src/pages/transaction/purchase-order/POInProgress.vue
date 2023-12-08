@@ -58,7 +58,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="items in filteredArray" :key="items.id" @click.prevent="$router.push({ name: 'Detail_Data', params: { id: items.id } })">
+            <tr v-for="items in filteredArray" :key="items.id" @click.prevent="$router.push({ name: 'DETAIL_DATA', params: { id: items.id } })">
               
               <td style="overflow: hidden; max-width: 300px">{{ items.title }}</td>
               <td style="overflow: hidden; max-width: 300px">{{ items.source }}</td>
