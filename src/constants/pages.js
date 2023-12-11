@@ -18,4 +18,5 @@ export const page = {
   DETAIL_DATA: { name: "DETAIL_DATA", path: "/detildata/:id" },
   SINGLE_PRODUCTS: { name: "SINGLE_PRODUCTS", path: "/singleproduct/:id" },
   CREATE_PRODUCT: { name: "CREATE_PRODUCT", path: "/CreateProduct" },
+  EDIT_PRODUCT: { name: "EDIT_PRODUCT", path: "/EditProduct/:id" },
 };

@@ -64,11 +64,11 @@
               <td style="overflow: hidden; max-width: 150px">{{ item.originalPrice }}</td>
               <td style="overflow: hidden; max-width: 150px">{{ item.unit }}</td>
               <td style="overflow: hidden; max-width: 150px">
-                <small
+                <small @click.stop="$router.push({name:'EDIT_PRODUCT', params:{id:item._id}})"
                   ><button class="btn btn-sm text-black"><img src="../assets/icons/edit.svg" alt="" /></button
                 ></small>
                 <small
-                  ><button class="btn btn-sm  "><img src="../assets/icons/delete.svg" alt="" /></button
+                  ><button class="btn btn-sm  " @click.stop="deleteProduct(item._id)"><img src="../assets/icons/delete.svg" alt="" /></button
                 ></small>
               </td>
             </tr>
@@ -118,6 +118,9 @@ export default {
     },
     dispatchArrayList(){
         this.$store.dispatch('allProducts')
+    },
+    deleteProduct(id){
+      this.$store.dispatch('deleteProduct', id)
     }
   },
   computed: {

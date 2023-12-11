@@ -51,6 +51,11 @@ const routes = [
     meta: { layout: LayoutWrapper },
   },
   {
+    ...page.EDIT_PRODUCT,
+    component: () => import('../pages/EditProduct.vue'),
+    meta: { layout: LayoutWrapper },
+  },
+  {
     ...page.SINGLE_PRODUCTS,
     component: () => import('../pages/SingleProduct.vue'),
     meta: { layout: LayoutWrapper },

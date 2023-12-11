@@ -159,29 +159,60 @@ export const store = createStore({
             data: response.data,
           },
         });
+        console.log(response.data,'gg')
       } catch (error) {
         console.error(error.message);
       }
     },
-    async createProduct({state }, payload) {
-      console.log(payload, 'papapap');
+    async createProduct({ state }, payload) {
       // const { title, description, category, status, photo, price, originalPrice, unit, createdBy, delivery, quantity } = payload;
 
       try {
         const response = await axios.post(
           'http://localhost:5000/api/product',
-          {
-            payload
-          },
+          
+            payload,
+          
           {
             headers: {
               Authorization: `Bearer ${state.token}`,
             },
           }
         );
+        console.log(response,'sdfsdfsdfsff');
+        if (response.status === 201) {
+         console.log('created')
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    },
 
-        if(response.status === 201){
-          store.dispatch('allProducts')
+    async deleteProduct({ state, dispatch }, payload) {
+      try {
+        const response = await axios.delete(`http://localhost:5000/api/product/${payload}`, {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        });
+        if (response.status === 200) {
+          dispatch('allProducts');
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    },
+    async updateProduct({ dispatch,state }, action) {
+      const {id, title} = action.payload
+      try {
+        const response = await axios.put(`http://localhost:5000/api/product/${id}`, {
+          title
+        },
+        {headers:{
+          Authorization: `Bearer ${state.token}`
+        }});
+        if(response.status === 200){
+          dispatch('allProducts')
         }
       } catch (error) {
         console.error(error.message);

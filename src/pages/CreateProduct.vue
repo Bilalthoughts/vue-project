@@ -20,10 +20,7 @@
      <hr>
      <h1>Original Price</h1>
      <input v-model="productObject.originalPrice" class="w-50 py-2 rounded" placeholder="Original Price..." type="text" name="" id="">
-     <h1>Unit</h1>
-     <input v-model="productObject.unit" class="w-50 py-2 rounded" placeholder="Unit..." type="text" name="" id="">
-     <h1>CreatedBy</h1>
-     <input v-model="productObject.createdBy" class="w-50 py-2 rounded" placeholder="CreatedBy..." type="text" name="" id="">
+   
      <h1>Delivery type</h1>
      <input v-model="productObject.delivery.type" class="w-50 py-2 rounded" placeholder="Delivery type..." type="text" name="" id="">
      <h1>Charges</h1>
@@ -38,6 +35,7 @@
 </template>
 
 <script>
+
 export default {
  name: 'CreateProduct',
  data(){
@@ -45,16 +43,16 @@ export default {
     productObject:{
     title:'',
     description:'',
-    category:'',
-    status: "",
+    category:'scenery',
+    status: "active",
     photo: "",
     price: "",
     originalPrice: "",
-    unit: '',
-    createdBy: "", 
+    unit: '$',
+    createdBy:'6554d96bd0cd54519c0542cf', 
     delivery: {
-        type: "",
-        charges: ''
+        type: "free",
+        charges: 0
     },
     quantity: ""
 }
@@ -62,6 +60,7 @@ export default {
  },
  methods: {
     async datafunc() {
+       console.log(this.productObject,'sldfkj')
         if (this.productObject.delivery && this.productObject.delivery.type) {
         await this.$store.dispatch('createProduct', this.productObject);
         this.$router.push(this.$page.PRODUCTS.path)
@@ -73,6 +72,7 @@ export default {
    },
    
  },
+ 
 };
 </script>
 
