@@ -159,7 +159,7 @@ export const store = createStore({
             data: response.data,
           },
         });
-        console.log(response.data,'gg')
+        console.log(response.data, 'gg');
       } catch (error) {
         console.error(error.message);
       }
@@ -170,18 +170,18 @@ export const store = createStore({
       try {
         const response = await axios.post(
           'http://localhost:5000/api/product',
-          
-            payload,
-          
+
+          payload,
+
           {
             headers: {
               Authorization: `Bearer ${state.token}`,
             },
           }
         );
-        console.log(response,'sdfsdfsdfsff');
+        console.log(response, 'sdfsdfsdfsff');
         if (response.status === 201) {
-         console.log('created')
+          console.log('created');
         }
       } catch (error) {
         console.error(error.message);
@@ -202,17 +202,22 @@ export const store = createStore({
         console.error(error.message);
       }
     },
-    async updateProduct({ dispatch,state }, action) {
-      const {id, title} = action.payload
+    async updateProduct({ dispatch, state }, action) {
+      const { id, title } = action.payload;
       try {
-        const response = await axios.put(`http://localhost:5000/api/product/${id}`, {
-          title
-        },
-        {headers:{
-          Authorization: `Bearer ${state.token}`
-        }});
-        if(response.status === 200){
-          dispatch('allProducts')
+        const response = await axios.put(
+          `http://localhost:5000/api/product/${id}`,
+          {
+            title,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          dispatch('allProducts');
         }
       } catch (error) {
         console.error(error.message);

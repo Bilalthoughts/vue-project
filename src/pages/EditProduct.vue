@@ -63,14 +63,13 @@ export default {
   },
   methods: {
     async UpdateFunc() {
-    
-        await this.$store.dispatch('updateProduct', {
-            payload:{
-                id: this.id,
-                title: this.productObject.title,
-            }
-        }); this.$router.push(this.$page.PRODUCTS.path)
-        
+      await this.$store.dispatch('updateProduct', {
+        payload: {
+          id: this.id,
+          title: this.productObject.title,
+        },
+      });
+      this.$router.push(this.$page.PRODUCTS.path);
     },
   },
   computed: {
@@ -80,12 +79,9 @@ export default {
   },
   created() {
     this.editedData = this.$store.state.allProductsArray.find((item) =>
-      Object.values(item).some(
-        (value) => typeof value === 'string' && value.includes(this.id)
-      )
+      Object.values(item).some((value) => typeof value === 'string' && value.includes(this.id))
     );
 
-    // Update productObject with the retrieved data
     if (this.editedData) {
       this.productObject.title = this.editedData.title;
       this.productObject.description = this.editedData.description;
@@ -100,6 +96,7 @@ export default {
       this.productObject.delivery.type = this.editedData.delivery.type;
       this.productObject.delivery.charges = this.editedData.delivery.charges;
       this.productObject.quantity = this.editedData.quantity;
-  }}
+    }
+  },
 };
 </script>
