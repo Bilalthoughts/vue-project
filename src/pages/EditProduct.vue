@@ -39,6 +39,11 @@
 <script>
 import { ref } from 'vue';
 export default {
+    beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   name: 'EditProduct',
   data() {
     return {

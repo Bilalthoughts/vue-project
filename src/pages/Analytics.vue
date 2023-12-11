@@ -78,9 +78,14 @@
 <script>
 /* import VueApexCharts from 'vue-apexcharts'; */
 
+
 export default {
   name: 'AnalyticPage',
-
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   data() {
     return {
       options: {

@@ -15,6 +15,11 @@ import {foodList} from '../data/foodlist'
 
 export default {
   name: "HomePage",
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   components: {
     CardList,
     MenuBarComp,

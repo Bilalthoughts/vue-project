@@ -140,6 +140,11 @@ import { po_inbox_list } from '../../../data/po-inbox.js';
 
 export default {
   name: 'DashboardComp',
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   data() {
     return {
       po_inbox_list: po_inbox_list,

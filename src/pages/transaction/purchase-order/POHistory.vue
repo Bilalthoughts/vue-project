@@ -142,6 +142,11 @@ import { po_history_list } from '../../../data/po-history.js';
 
 export default {
   name: 'PO-History',
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   data() {
     return {
       po_history_list: po_history_list,

@@ -100,6 +100,11 @@
 
 <script>
 export default {
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   name: 'productsPage',
   data() {
     return {

@@ -10,6 +10,7 @@ import { page } from '../constants/pages';
 const routes = [
   {
     path: '/',
+    name:'HOME',
     component: () => import('../pages/Home.vue'),
     meta: { layout: LayoutWrapper,auth: true },
   },

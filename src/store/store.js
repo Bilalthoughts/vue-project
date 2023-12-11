@@ -20,10 +20,14 @@ export const store = createStore({
       BoolianOtp: false,
       loginRoute: false,
       token: '',
+      pageTitle: 'asd',
       allProductsArray: [],
     };
   },
   mutations: {
+    updatePageTitle(state,payload){
+      state.pageTitle = payload
+    },
     loginData(state, action) {
       state.email = action.payload.data.email;
       state.password = action.payload.data.password;

@@ -36,6 +36,11 @@
 <script>
 export default {
   name: 'CreateProduct',
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   data() {
     return {
       productObject: {

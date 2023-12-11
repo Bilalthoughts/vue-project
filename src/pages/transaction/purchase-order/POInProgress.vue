@@ -97,6 +97,11 @@
 <script>
 export default {
   name: 'PO-InProgress',
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   data() {
     return {
       pageNo: 1,

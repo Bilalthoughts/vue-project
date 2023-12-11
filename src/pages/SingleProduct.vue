@@ -33,6 +33,11 @@
 <script>
 export default {
   name: 'SingleProductPage',
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.commit('updatePageTitle', to.name);
+    });
+  },
   computed: {
     id() {
       return this.$route.params.id;

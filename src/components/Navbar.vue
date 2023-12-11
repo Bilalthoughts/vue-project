@@ -11,7 +11,7 @@
           <span @click="showSidebar" v-if="ifShowSidebar">
             <img src="../assets/icons/cross.svg" alt="" />
           </span>
-          <span @click.prevent="$router.push('/')"><img style="width: 120px;" src="../assets/image/ecom.png" alt=""> | </span><span class="text-black" style="font-weight: bolder;"><b> WEBEDI  </b></span>| <span> Analytics </span>
+          <span @click.prevent="$router.push('/')"><img style="width: 120px;" src="../assets/image/ecom.png" alt=""> | </span><span class="text-black" style="font-weight: bolder;"><b> WEBEDI  </b></span>| <span> {{ updatePageName }} </span>
         </h2>
       </a>
 
@@ -347,5 +347,10 @@ export default {
           console.log(this.$store.state.ApiData)
     }
   },
+  computed:{
+    updatePageName(){
+      return this.$store.state.pageTitle
+    }
+  }
 };
 </script>
