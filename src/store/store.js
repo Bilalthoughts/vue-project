@@ -12,7 +12,7 @@ export const store = createStore({
       email: '',
       password: '',
       isAuth: false,
-      ApiData: null,
+      ApiData: '',
       otp: null,
       name: null,
       role: null,
@@ -20,7 +20,7 @@ export const store = createStore({
       BoolianOtp: false,
       loginRoute: false,
       token: '',
-      pageTitle: 'asd',
+      pageTitle: '',
       allProductsArray: [],
     };
   },

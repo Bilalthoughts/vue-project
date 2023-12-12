@@ -76,7 +76,7 @@
         <small>
           <paginationWrapper
             v-model="pageNo"
-            :records="GetStateData.meta.totalArticles"
+            :records="GetStateData.meta?.totalArticles || 0"
             :per-page="noOfRows"
             @paginate="myCallback()"
             :options="{
@@ -119,8 +119,8 @@ export default {
       this.statusSelected = '';
       this.tPSelected = '';
     },
-    fetchData() {
-      this.$store.dispatch('ApiData', { noOfRows: this.noOfRows, pageNo: this.pageNo });
+    async fetchData() {
+      await this.$store.dispatch('ApiData', { noOfRows: this.noOfRows, pageNo: this.pageNo });
     },
     myCallback() {
       // console.log();
@@ -129,10 +129,10 @@ export default {
   },
   computed: {
     GetStateData() {
-      return this.$store.state.ApiData;
+      return this.$store.state?.ApiData;
     },
     po_inprogress_list() {
-   return this.GetStateData.articles;  
+   return this.GetStateData?.articles;  
  
   
 },
@@ -170,5 +170,8 @@ export default {
     },
     pageNo: 'fetchData',
   },
+  mounted(){
+    console.log(this.GetStateData,'GetStateDatajjj')
+  }
 };
 </script>
