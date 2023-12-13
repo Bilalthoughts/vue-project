@@ -207,13 +207,13 @@ export const store = createStore({
       }
     },
     async updateProduct({ dispatch, state }, action) {
-      const { id, title } = action.payload;
+      console.log(action.payload,'edited data')
       try {
         const response = await axios.put(
-          `http://localhost:5000/api/product/${id}`,
-          {
-            title,
-          },
+          `http://localhost:5000/api/product/${action.payload.id}`,
+          
+            action.payload
+          ,
           {
             headers: {
               Authorization: `Bearer ${state.token}`,

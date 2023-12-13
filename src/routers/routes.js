@@ -7,6 +7,7 @@ import { store } from '../store/store';
 import LayoutWrapper from '../layouts/Layout.vue';
 import { transRoutes } from './transRouter';
 import { page } from '../constants/pages';
+
 const routes = [
   {
     path: '/',
@@ -32,10 +33,37 @@ const routes = [
     meta:{public:true}
   },
   {
+    ...page.NOT_FOUND,
+    component: () => import('../pages/404Page.vue'),
+  },
+  {
+    ...page.NO_RECORD,
+    component: () => import('../pages/NoRecords.vue'),
+  },
+  {
     ...page.DETAIL_DATA,
     component: () => import('../pages/DetailData.vue'),
     meta: { layout: LayoutWrapper },
+    beforeEnter: (to, from, next) => {
+      const id = to.params.id;    
+      const exist = store.state.ApiData.articles.some((item) => item.id === id);    
+      if (!exist) {
+        next({
+          name: page.NO_RECORD.name,
+          params: { pathMatch: to.path.substring(1).split('/') },
+          query: to.query,
+          hash: to.hash,
+        });
+      } else {
+        next();
+      }
+    },
+    
   },
+  
+  
+  
+  
   {
     ...page.DOC_TRACKING,
     component: () => import('../pages/DocTracking.vue'),
@@ -60,6 +88,20 @@ const routes = [
     ...page.SINGLE_PRODUCTS,
     component: () => import('../pages/SingleProduct.vue'),
     meta: { layout: LayoutWrapper },
+    beforeEnter: (to, from, next) => {
+      const id = to.params.id;    
+      const exist = store.state.allProductsArray.some((item) => item._id === id);    
+      if (!exist) {
+        next({
+          name: page.NO_RECORD.name,
+          params: { pathMatch: to.path.substring(1).split('/') },
+          query: to.query,
+          hash: to.hash,
+        });
+      } else {
+        next();
+      }
+    },
   },
   {
     ...page.DASHBOARD_PAGE,
@@ -75,6 +117,13 @@ const routes = [
     ...page.FORM_PAGE,
     component: () => import('../pages/Form.vue'),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../pages/404Page.vue'),
+  },
+  { path: '/detildata/:afterUser(.*)', 
+  component: () => import('../pages/404Page.vue'),
+},
 ];
 
 const routers = createRouter({

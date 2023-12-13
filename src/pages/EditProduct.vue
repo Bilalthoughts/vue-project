@@ -22,7 +22,7 @@
     <h1>Unit</h1>
     <input v-model="productObject.unit" class="w-50 py-2 rounded" placeholder="Unit..." type="text" name="" id="" />
     <h1>CreatedBy</h1>
-    <input v-model="productObject.createdBy" class="w-50 py-2 rounded" placeholder="CreatedBy..." type="text" name="" id="" />
+    <input v-model="productObject.createdBy.name" class="w-50 py-2 rounded" placeholder="CreatedBy..." type="text" name="" id="" />
     <h1>Delivery type</h1>
     <input v-model="productObject.delivery.type" class="w-50 py-2 rounded" placeholder="Delivery type..." type="text" name="" id="" />
     <h1>Charges</h1>
@@ -57,7 +57,9 @@ export default {
         price: '',
         originalPrice: '',
         unit: '',
-        createdBy: '',
+        createdBy: {
+          name:''
+        },
         delivery: {
           type: '',
           charges: '',
@@ -72,6 +74,22 @@ export default {
         payload: {
           id: this.id,
           title: this.productObject.title,
+          description: this.productObject.description,
+        category: this.productObject.category,
+        status: this.productObject.status,
+        photo: this.productObject.photo,
+        price: this.productObject.price,
+        originalPrice: this.productObject.originalPrice,
+        unit: this.productObject.unit,
+        createdBy: {
+          name:this.productObject.createdBy.name,
+          _id:"6554d96bd0cd54519c0542cf",
+        },
+        delivery: {
+          type: this.productObject.delivery.type,
+          charges: this.productObject.delivery.charges,
+        },
+        quantity: this.productObject.quantity,
         },
       });
       this.$router.push(this.$page.PRODUCTS.path);
@@ -97,9 +115,9 @@ export default {
       this.productObject.originalPrice = this.editedData.originalPrice;
       this.productObject.unit = this.editedData.unit;
       this.productObject.status = this.editedData.status;
-      this.productObject.createdBy = this.editedData.createdBy;
-      this.productObject.delivery.type = this.editedData.delivery.type;
-      this.productObject.delivery.charges = this.editedData.delivery.charges;
+      this.productObject.createdBy.name = this.editedData.createdBy.name;
+      this.productObject.delivery.type = this.editedData.delivery?.type;
+      this.productObject.delivery.charges = this.editedData.delivery?.charges;
       this.productObject.quantity = this.editedData.quantity;
     }
   },

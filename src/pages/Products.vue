@@ -54,7 +54,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr  v-for="item in allProductList" :key="item.id" @click="$router.push({name:'SINGLE_PRODUCTS', params:{id:item._id}})" style="cursor: pointer;">
+            <tr  v-for="item in searchProduct" :key="item.id" @click="$router.push({name:'SINGLE_PRODUCTS', params:{id:item._id}})" style="cursor: pointer;">
               <td style="overflow: hidden; max-width: 150px">{{ item.title }}</td>
               <td style="overflow: hidden; max-width: 150px">{{ item.description }}</td>
               <td style="overflow: hidden; max-width: 150px">{{ item.category }}</td>
@@ -132,8 +132,19 @@ export default {
     allProductList() {
       return this.$store.state.allProductsArray;
     },
+    searchProduct() {
+  let filteredArray = this.allProductList;
+  if (this.search !== '') {
+    filteredArray = filteredArray.filter((item) => 
+      Object.values(item).some((value) => String(value).toLowerCase().includes(this.search.toLowerCase()))
+    );
+  }
+  return filteredArray;
+},
+
+
     asd(){
-        return console.log(this.allProductList,'allProductListsss')
+        return console.log(this.searchProduct,'allProductListsss')
     }
   },
   watch:{
@@ -142,6 +153,7 @@ export default {
         immediate:true
     }
 
-  }
+  },
+ 
 };
 </script>

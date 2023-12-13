@@ -19,4 +19,6 @@ export const page = {
   SINGLE_PRODUCTS: { name: "SINGLE_PRODUCTS", path: "/singleproduct/:id" },
   CREATE_PRODUCT: { name: "CREATE_PRODUCT", path: "/CreateProduct" },
   EDIT_PRODUCT: { name: "EDIT_PRODUCT", path: "/EditProduct/:id" },
+  NOT_FOUND: { name: "NOT_FOUND", path: "/notfound" },
+  NO_RECORD: { name: "NO_RECORD", path: "/norecord" },
 };
