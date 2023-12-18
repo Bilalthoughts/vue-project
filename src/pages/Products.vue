@@ -71,43 +71,38 @@
               <td style="overflow: hidden; max-width: 150px">{{ item.originalPrice }}</td>
               <td style="overflow: hidden; max-width: 150px">{{ item.unit }}</td>
               <td style="overflow: hidden; max-width: 150px">
-                <small @click.stop=" fetchID(item._id)"
-                  ><button data-bs-toggle="modal" data-bs-target="#exampleModal1"  class="btn btn-sm text-black"><img src="../assets/icons/edit.svg" alt="" /></button
+                <small @click.stop="fetchID(item._id)"
+                  ><button data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-sm text-black">
+                    <img src="../assets/icons/edit.svg" alt="" /></button
                 ></small>
 
-                <small @click.stop="()=>delID = item._id"
-                  ><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm" ><img src="../assets/icons/delete.svg" alt="" /></button
+                <small @click.stop="() => (delID = item._id)"
+                  ><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm">
+                    <img src="../assets/icons/delete.svg" alt="" /></button
                 ></small>
-                <small
-                  >
-                  
-
-
-<!-- Modal -->
-<div @click.stop="" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Seleceted Item</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you Sure ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancle</button>
-        <button @click.stop="deleteProduct" data-bs-dismiss="modal" type="button" class="btn btn-danger">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
+                <small>
+                  <!-- Modal -->
+                  <div @click.stop="" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Seleceted Item</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Are you Sure ?</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancle</button>
+                          <button @click.stop="deleteProduct" data-bs-dismiss="modal" type="button" class="btn btn-danger">Confirm</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <!-- Modal -->
                   <div @click.stop="" class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-body">
-                          
-                          <div class=" d-flex flex-column">
+                          <div class="d-flex flex-column">
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>Title:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -119,7 +114,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>description:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -131,7 +126,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>category:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -143,7 +138,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>status:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -155,7 +150,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>photo:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -167,7 +162,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>price:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -179,7 +174,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>originalPrice:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -191,7 +186,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>unit:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -203,8 +198,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>quantity:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -216,8 +210,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
-                           
+
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>createdBy:</h6></span>
                               <span class="w-75 text-right text-end">
@@ -251,13 +244,7 @@
                                   name=""
                                   id="" /></span
                             ></span>
-                           
-  
-                            
-                            
                           </div>
-
-
                         </div>
                         <div class="modal-footer">
                           <button @click.stop="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -308,8 +295,8 @@ export default {
     return {
       page: 1,
       noOfRows: 10,
-      stateID:ref(''),
-      delID:ref(''),
+      stateID: ref(''),
+      delID: ref(''),
       search: '',
       statusSelected: '',
       statusSort: false,
@@ -320,13 +307,13 @@ export default {
         description: '',
         category: '',
         status: '',
-        closemodal:false,
+        closemodal: false,
         photo: '',
         price: '',
         originalPrice: '',
         unit: '',
         createdBy: {
-          name:''
+          name: '',
         },
         delivery: {
           type: '',
@@ -340,65 +327,66 @@ export default {
     myCallback() {
       // console.log();
     },
-    fetchID(id){
-      
-      if(id){
-        this.stateID = this.$store.state.allProductsArray.find((item)=> Object.values(item).some((value)=> typeof value === 'string' && value.includes(id)));
-        if(this.stateID){
+    fetchID(id) {
+      if (id) {
+        this.stateID = this.$store.state.allProductsArray.find((item) =>
+          Object.values(item).some((value) => typeof value === 'string' && value.includes(id))
+        );
+        if (this.stateID) {
           this.productObject.title = this.stateID.title;
-      this.productObject.description = this.stateID.description;
-      this.productObject.category = this.stateID.category;
-      this.productObject.photo = this.stateID.status;
-      this.productObject.photo = this.stateID.photo;
-      this.productObject.price = this.stateID.price;
-      this.productObject.originalPrice = this.stateID.originalPrice;
-      this.productObject.unit = this.stateID.unit;
-      this.productObject.status = this.stateID.status;
-      this.productObject.createdBy.name = this.stateID.createdBy.name;
-      this.productObject.delivery.type = this.stateID.delivery?.type;
-      this.productObject.delivery.charges = this.stateID.delivery?.charges;
-      this.productObject.quantity = this.stateID.quantity;
+          this.productObject.description = this.stateID.description;
+          this.productObject.category = this.stateID.category;
+          this.productObject.photo = this.stateID.status;
+          this.productObject.photo = this.stateID.photo;
+          this.productObject.price = this.stateID.price;
+          this.productObject.originalPrice = this.stateID.originalPrice;
+          this.productObject.unit = this.stateID.unit;
+          this.productObject.status = this.stateID.status;
+          this.productObject.createdBy.name = this.stateID.createdBy.name;
+          this.productObject.delivery.type = this.stateID.delivery?.type;
+          this.productObject.delivery.charges = this.stateID.delivery?.charges;
+          this.productObject.quantity = this.stateID.quantity;
         }
       }
     },
-    async updateFunc(){
+    async updateFunc() {
       await this.$store.dispatch('updateProduct', {
         payload: {
           id: this.stateID._id,
           title: this.productObject.title,
           description: this.productObject.description,
-        category: this.productObject.category,
-        status: this.productObject.status,
-        photo: this.productObject.photo,
-        price: this.productObject.price,
-        originalPrice: this.productObject.originalPrice,
-        unit: this.productObject.unit,
-        createdBy: {
-          name:this.productObject.createdBy.name,
-          _id:"6554d96bd0cd54519c0542cf",
-        },
-        delivery: {
-          type: this.productObject.delivery.type,
-          charges: this.productObject.delivery.charges,
-        },
-        quantity: this.productObject.quantity,
+          category: this.productObject.category,
+          status: this.productObject.status,
+          photo: this.productObject.photo,
+          price: this.productObject.price,
+          originalPrice: this.productObject.originalPrice,
+          unit: this.productObject.unit,
+          createdBy: {
+            name: this.productObject.createdBy.name,
+            _id: '6554d96bd0cd54519c0542cf',
+          },
+          delivery: {
+            type: this.productObject.delivery.type,
+            charges: this.productObject.delivery.charges,
+          },
+          quantity: this.productObject.quantity,
         },
       });
       this.closemodal = true && this.$router.push(this.$page.PRODUCTS.path);
-
-
     },
     dispatchArrayList() {
       this.$store.dispatch('allProducts');
     },
     deleteProduct() {
-      if(this.delID !== ''){
-        this.stateID = this.$store.state.allProductsArray.find((item)=> Object.values(item).some((value)=> typeof value === 'string' && value.includes(this.delID)));
-        if(this.stateID !== ''){
+      if (this.delID !== '') {
+        this.stateID = this.$store.state.allProductsArray.find((item) =>
+          Object.values(item).some((value) => typeof value === 'string' && value.includes(this.delID))
+        );
+        if (this.stateID !== '') {
           this.$store.dispatch('deleteProduct', this.stateID._id);
-
-        }}
-    }
+        }
+      }
+    },
   },
   computed: {
     allProductList() {
