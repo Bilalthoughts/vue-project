@@ -82,7 +82,15 @@
                 ></small>
                 <small>
                   <!-- Modal -->
-                  <div @click.stop="" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div
+                    @click.stop=""
+                    data-bs-backdrop="static"
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -98,13 +106,30 @@
                     </div>
                   </div>
                   <!-- Modal -->
-                  <div @click.stop="" class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div
+                    style="cursor: auto"
+                    @click.stop=""
+                    class="modal fade h-75 m-0"
+                    data-bs-backdrop="static"
+                    id="exampleModal1"
+                    tabindex="-1"
+                    aria-labelledby="exampleModal1"
+                    aria-hidden="true"
+                  >
                     <div class="modal-dialog">
                       <div class="modal-content">
+                        <div class="modal-header bg-light shadow-lg mb-5">
+                          <h1 class="modal-title fs-5 text-primary" id="exampleModal1">Edit Product</h1>
+                          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                            <img src="../assets/icons/cross.svg" alt="" />
+                          </button>
+                        </div>
                         <div class="modal-body">
                           <div class="d-flex flex-column">
-                            <span class="d-flex w-100 py-3 justify-content-around flex-row"
-                              ><span class="w-25"><h6>Title:</h6></span>
+                            <span class="d-flex w-100 py-3 justify-content-around flex-row">
+                              <span class="w-25"
+                                ><h6>Title: <span style="color: red">*</span></h6></span
+                              >
                               <span class="w-75 text-right text-end">
                                 <input
                                   v-model="productObject.title"
@@ -112,11 +137,18 @@
                                   placeholder="title..."
                                   type="text"
                                   name=""
-                                  id="" /></span
-                            ></span>
+                                  id=""
+                                />
+                                <span v-for="error of v$.productObject.title.$errors" :key="error.$uid">
+                                  <strong class="text-danger">{{ error.$message }}</strong>
+                                </span>
+                              </span>
+                            </span>
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
-                              ><span class="w-25"><h6>description:</h6></span>
+                              ><span class="w-25"
+                                ><h6>description:<span style="color: red">*</span></h6></span
+                              >
                               <span class="w-75 text-right text-end">
                                 <input
                                   v-model="productObject.description"
@@ -124,32 +156,92 @@
                                   placeholder="description..."
                                   type="text"
                                   name=""
-                                  id="" /></span
-                            ></span>
+                                  id=""
+                                /><span v-for="error of v$.productObject.description.$errors" :key="error.$uid">
+                                  <strong class="text-danger">{{ error.$message }}</strong>
+                                </span></span
+                              >
+                            </span>
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
-                              ><span class="w-25"><h6>category:</h6></span>
+                              ><span class="w-25"
+                                ><h6>category:<span style="color: red">*</span></h6></span
+                              >
                               <span class="w-75 text-right text-end">
-                                <input
+                                <!-- <input
                                   v-model="productObject.category"
                                   class="w-100 py-1 border-0 border-bottom border-dark"
                                   placeholder="category..."
                                   type="text"
                                   name=""
-                                  id="" /></span
-                            ></span>
+                                  id=""
+                                /> -->
+                                <div class="dropdown w-100" style="position: relative">
+                                  <a
+                                    style="text-decoration: none"
+                                    class="remove-dropdown-arrow w-100 text-start btn py-1 border-0 border-bottom border-dark dropdown-toggle"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                  >
+                                    {{ productObject.category !== '' ? productObject.category : 'Categories' }}
+                                  </a>
+                                  <ul class="dropdown-menu w-100 posi">
+                                    <li>
+                                      <a @click="() => (this.productObject.category = 'Sports')" class="dropdown-item" href="#">Sports</a>
+                                      <a @click="() => (this.productObject.category = 'Education')" class="dropdown-item" href="#">Education</a>
+                                      <a @click="() => (this.productObject.category = 'Entertainment')" class="dropdown-item" href="#"
+                                        >Entertainment</a
+                                      >
+                                    </li>
+                                  </ul>
+                                </div>
+
+                                <span v-for="error of v$.productObject.category.$errors" :key="error.$uid">
+                                  <strong class="text-danger">{{ error.$message }}</strong>
+                                </span></span
+                              ></span
+                            >
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
-                              ><span class="w-25"><h6>status:</h6></span>
+                              ><span class="w-25"
+                                ><h6>status:<span style="color: red">*</span></h6></span
+                              >
                               <span class="w-75 text-right text-end">
-                                <input
+                                <!-- <input
                                   v-model="productObject.status"
                                   class="w-100 py-1 border-0 border-bottom border-dark"
                                   placeholder="status..."
                                   type="text"
                                   name=""
-                                  id="" /></span
-                            ></span>
+                                  id=""
+                                /> -->
+                                
+                                <div class="dropdown w-100" style="position: relative">
+                                  <a
+                                    style="text-decoration: none"
+                                    class="remove-dropdown-arrow w-100 text-start btn py-1 border-0 border-bottom border-dark dropdown-toggle"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                  >
+                                    {{ productObject.status !== '' ? productObject.status : 'active' }}
+                                  </a>
+                                  <ul class="dropdown-menu w-100 posi">
+                                    <li>
+                                      <a @click="() => (this.productObject.status = 'active')" class="dropdown-item" href="#">active</a>
+                                      <a @click="() => (this.productObject.status = 'inactive')" class="dropdown-item" href="#">inactive</a>
+                                     
+                                    </li>
+                                  </ul>
+                                </div>
+                                
+                                
+                                <span v-for="error of v$.productObject.status.$errors" :key="error.$uid">
+                                  <strong class="text-danger">{{ error.$message }}</strong>
+                                </span></span
+                              ></span
+                            >
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>photo:</h6></span>
@@ -164,7 +256,9 @@
                             ></span>
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
-                              ><span class="w-25"><h6>price:</h6></span>
+                              ><span class="w-25"
+                                ><h6>price:<span style="color: red">*</span></h6></span
+                              >
                               <span class="w-75 text-right text-end">
                                 <input
                                   v-model="productObject.price"
@@ -172,8 +266,12 @@
                                   placeholder="price..."
                                   type="text"
                                   name=""
-                                  id="" /></span
-                            ></span>
+                                  id=""
+                                /><span v-for="error of v$.productObject.price.$errors" :key="error.$uid">
+                                  <strong class="text-danger">{{ error.$message }}</strong>
+                                </span></span
+                              ></span
+                            >
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>originalPrice:</h6></span>
@@ -200,7 +298,9 @@
                             ></span>
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
-                              ><span class="w-25"><h6>quantity:</h6></span>
+                              ><span class="w-25"
+                                ><h6>quantity:<span style="color: red">*</span></h6></span
+                              >
                               <span class="w-75 text-right text-end">
                                 <input
                                   v-model="productObject.quantity"
@@ -208,8 +308,12 @@
                                   placeholder="quantity..."
                                   type="number"
                                   name=""
-                                  id="" /></span
-                            ></span>
+                                  id=""
+                                /><span v-for="error of v$.productObject.quantity.$errors" :key="error.$uid">
+                                  <strong class="text-danger">{{ error.$message }}</strong>
+                                </span></span
+                              ></span
+                            >
 
                             <span class="d-flex w-100 py-3 justify-content-around flex-row"
                               ><span class="w-25"><h6>createdBy:</h6></span>
@@ -248,7 +352,7 @@
                         </div>
                         <div class="modal-footer">
                           <button @click.stop="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button data-bs-dismiss="modal" @click="updateFunc" type="button" class="btn btn-success">Save changes</button>
+                          <button @click="updateFunc" type="button" class="btn btn-success">Save changes</button>
                         </div>
                       </div>
                     </div>
@@ -280,9 +384,21 @@
 .removeArrow::after {
   display: none;
 }
+ul.dropdown-menu.posi.show {
+  position: absolute !important;
+  left: -100% !important;
+  top: 0% !important;
+}
+
+.remove-dropdown-arrow::after {
+  display: none !important;
+}
+
 </style>
 
 <script>
+import { useVuelidate } from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
 import { ref } from 'vue';
 export default {
   beforeRouteEnter(to, from, next) {
@@ -291,6 +407,11 @@ export default {
     });
   },
   name: 'productsPage',
+  setup() {
+    return {
+      v$: useVuelidate(),
+    };
+  },
   data() {
     return {
       page: 1,
@@ -300,6 +421,7 @@ export default {
       search: '',
       statusSelected: '',
       statusSort: false,
+      checkValidation: false,
       tPSelected: '',
       tPSort: false,
       productObject: {
@@ -323,11 +445,26 @@ export default {
       },
     };
   },
+  validations() {
+    return {
+      productObject: {
+        title: { required },
+        description: { required },
+        category: { required },
+        status: { required },
+        price: { required },
+        delivery: {
+          charges: { required },
+        },
+        quantity: { required },
+      },
+    };
+  },
   methods: {
     myCallback() {
       // console.log();
     },
-    fetchID(id) {
+    async fetchID(id) {
       if (id) {
         this.stateID = this.$store.state.allProductsArray.find((item) =>
           Object.values(item).some((value) => typeof value === 'string' && value.includes(id))
@@ -350,6 +487,15 @@ export default {
       }
     },
     async updateFunc() {
+      this.v$.$touch();
+
+      const isFormCorrect = await this.v$.$validate();
+
+      if (!isFormCorrect) {
+        return;
+      }
+      const myInput = document.getElementById('exampleModal1');
+
       await this.$store.dispatch('updateProduct', {
         payload: {
           id: this.stateID._id,
@@ -372,7 +518,13 @@ export default {
           quantity: this.productObject.quantity,
         },
       });
-      this.closemodal = true && this.$router.push(this.$page.PRODUCTS.path);
+      if (myInput) {
+        myInput.style.display = 'none !important';
+        myInput.style.visibility = 'hidden';
+        myInput.style.opacity = '0';
+      }
+      this.$router.push(this.$page.PRODUCTS.path);
+      location.reload();
     },
     dispatchArrayList() {
       this.$store.dispatch('allProducts');
