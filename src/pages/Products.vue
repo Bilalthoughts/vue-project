@@ -264,7 +264,7 @@
                                   v-model="productObject.price"
                                   class="w-100 py-1 border-0 border-bottom border-dark"
                                   placeholder="price..."
-                                  type="text"
+                                  type="number"
                                   name=""
                                   id=""
                                 /><span v-for="error of v$.productObject.price.$errors" :key="error.$uid">
@@ -280,7 +280,7 @@
                                   v-model="productObject.originalPrice"
                                   class="w-100 py-1 border-0 border-bottom border-dark"
                                   placeholder="originalPrice..."
-                                  type="text"
+                                  type="number"
                                   name=""
                                   id="" /></span
                             ></span>
@@ -292,7 +292,7 @@
                                   v-model="productObject.unit"
                                   class="w-100 py-1 border-0 border-bottom border-dark"
                                   placeholder="unit..."
-                                  type="text"
+                                  type="number"
                                   name=""
                                   id="" /></span
                             ></span>
@@ -304,9 +304,10 @@
                               <span class="w-75 text-right text-end">
                                 <input
                                   v-model="productObject.quantity"
+                                  @input="productObject.quantity = productObject.quantity.replace(/\D/g, '')"
                                   class="w-100 py-1 border-0 border-bottom border-dark"
                                   placeholder="quantity..."
-                                  type="number"
+                                  type="text"
                                   name=""
                                   id=""
                                 /><span v-for="error of v$.productObject.quantity.$errors" :key="error.$uid">
